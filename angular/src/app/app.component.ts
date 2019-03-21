@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <angular-load-image
       src="http://localhost:3000/angular.jpg"
-      srcThumb="http://localhost:3000/angular-thumb.jpg">
+      thumb="http://localhost:3000/angular-thumb.jpg">
     </angular-load-image>`,
 })
 export class AppComponent {

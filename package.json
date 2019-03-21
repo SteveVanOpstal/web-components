@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "http-server",
-    "http-server": "http-server"
+    "http-server": "http-server",
+    "server": "node server.js"
   },
   "author": "",
   "license": "ISC"
