@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img class="thumb" v-bind:class="{ready: ready}" src="{{srcThumb}}">
-    <img src="{{src}}" @load="load">
+    <img class="thumb" v-bind:class="{ready: ready}" :src="srcThumb">
+    <img :src="src" @load="ready = true">
   </div>
 </template>
 
@@ -26,17 +26,16 @@ img {
 import Vue from "vue";
 import Component from "vue-class-component";
 
+Vue.config.productionTip = false;
+
+export default
 @Component({
   props: {
     src: String,
     srcThumb: String
   }
 })
-export default class LoadImageComponent extends Vue {
+class LoadImage extends Vue {
   ready = false;
-
-  load() {
-    this.ready = true;
-  }
 }
 </script>

@@ -5,12 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:web-components": "ng build -c=web-components && npm run package",
+    "build:web-components": "ng build -c=web-components",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "format": "npm run clang-format -- --glob=\"@(src|e2e)/**/*.@(ts|js)\" -i",
-    "package": "cat dist/angular/{runtime,polyfills,vendor,main}.js > dist/angular/angular.js",
     "clang-format": "clang-format"
   },
   "private": true,

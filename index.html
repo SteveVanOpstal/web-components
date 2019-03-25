@@ -5,11 +5,19 @@
   <title>web components</title>
   <base href="/">
 
+  <!-- angular-load-image -->
   <script defer type="text/javascript" src="angular/dist/angular/runtime.js"></script>
   <script defer type="text/javascript" src="angular/dist/angular/polyfills.js"></script>
   <script defer type="text/javascript" src="angular/dist/angular/main.js"></script>
+
+  <!-- vue-load-image -->
+  <script defer type="text/javascript" src="https://unpkg.com/vue"></script>
+  <script defer type="text/javascript" src="vue/dist/vue-load-image.min.js"></script>
 </head>
 <body>
-  <angular-load-image src="http://localhost:3000/angular.jpg" thumb="http://localhost:3000/angular-thumb.jpg"></angular-load-image>
+  <h1>Angular, Vue, React, VanillaJs</h1>
+  <h2>Web Components</h2>
+  <angular-load-image src="http://localhost:3000/angular.jpg" src-thumb="http://localhost:3000/angular-thumb.jpg"></angular-load-image>
+  <vue-load-image src="http://localhost:3000/vue.jpg" src-thumb="http://localhost:3000/vue-thumb.jpg"></vue-load-image>
 </body>
 </html>
