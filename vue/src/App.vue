@@ -1,5 +1,9 @@
 <template>
-  <LoadImage src="http://localhost:3000/vue.jpg" thumb="http://localhost:3000/vue-thumb.jpg"/>
+  <LoadImage
+    src="http://localhost:3200/vue.jpg"
+    thumb="http://localhost:3200/vue-thumb.jpg"
+    alt="vue"
+  />
 </template>
 
 <script>

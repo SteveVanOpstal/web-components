@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img class="thumb" v-bind:class="{ready: ready}" :src="srcThumb">
-    <img :src="src" @load="ready = true">
+    <img :src="srcThumb" :alt="alt" class="thumb" v-bind:class="{ready: ready}">
+    <img :src="src" :alt="alt" @load="ready = true">
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default
 @Component({
   props: {
     src: String,
-    srcThumb: String
+    srcThumb: String,
+    alt: String
   }
 })
 class LoadImage extends Vue {
