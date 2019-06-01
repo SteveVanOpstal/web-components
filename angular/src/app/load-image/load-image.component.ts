@@ -1,9 +1,9 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'angular-load-image',
   template: `
-    <img [src]="srcThumb" [alt]="alt" class="thumb" [ngClass]="{ready: ready}"/>
+    <img [src]="srcThumb" [alt]="alt" class="thumb"/>
     <img [src]="src" [alt]="alt" (load)="ready = true"/>`,
   styleUrls: ['load-image.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
@@ -13,5 +13,5 @@ export class LoadImageComponent {
   @Input() srcThumb: string;
   @Input() alt: string;
 
-  ready = false;
+  @HostBinding('attr.ready') ready;
 }

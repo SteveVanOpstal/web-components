@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <title>web components</title>
   <base href="/">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
 
   <!-- angular-load-image -->
   <script defer type="text/javascript" src="angular/dist/angular/runtime.js"></script>
@@ -13,12 +15,23 @@
   <!-- vue-load-image -->
   <script defer type="text/javascript" src="https://unpkg.com/vue"></script>
   <script defer type="text/javascript" src="vue/dist/vue-load-image.min.js"></script>
+
+  <!-- react-load-image -->
+  <script defer type="text/javascript" src="react/build/static/js/react.js"></script>
+  <link rel="stylesheet" type="text/css" href="react/build/static/css/react.css">
+
+  <!-- vanillajs-load-image -->
+  <script defer type="text/javascript" src="vanillajs/load-image.js"></script>
 </head>
 <body>
   <h1>Web Components</h1>
-  <h2>Angular, Vue, React, VanillaJs</h2>
-  <angular-load-image src="assets/angular.jpg" src-thumb="thumb/angular.jpg" alt="angular"></angular-load-image>
-  <vue-load-image src="assets/vue.jpg" src-thumb="thumb/vue.jpg" alt="vue"></vue-load-image>
+
+  <div class="grid">
+    <angular-load-image src="assets/angular.jpg" src-thumb="thumbs/angular.jpg" alt="angular">Loading Angular..</angular-load-image>
+    <vue-load-image src="assets/vue.jpg" src-thumb="thumbs/vue.jpg" alt="vue">Loading Vue..</vue-load-image>
+    <react-load-image src="assets/react.jpg" src-thumb="thumbs/react.jpg" alt="react">Loading React..</react-load-image>
+    <vanillajs-load-image src="assets/vanilla.jpg" src-thumb="thumbs/vanilla.jpg" alt="javascript">Loading VanillaJs..</vanillajs-load-image>
+  </div>
 
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra metus vitae turpis lacinia interdum. Pellentesque eu quam quis neque egestas vulputate. Donec vehicula bibendum tellus eu ultricies. Donec auctor in neque vel iaculis. Vestibulum non mauris quis metus mattis hendrerit. Fusce volutpat viverra egestas. In ultrices odio mollis, ornare diam in, auctor lorem. Nullam sed viverra turpis, a pellentesque diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis eu tortor et elit consectetur imperdiet a vitae orci. Duis sagittis mauris risus, et ullamcorper neque aliquam non. Quisque sed tortor diam. Proin interdum tempor varius.</p>
   <p>Nunc ac lectus tempor, aliquet velit et, laoreet libero. Maecenas a nisl quam. Morbi sollicitudin vehicula elementum. Sed ultrices ipsum eget mi posuere, eu vulputate erat vestibulum. Phasellus ut magna consequat dolor consectetur placerat. Pellentesque a convallis neque. Ut sit amet velit odio. Donec sit amet scelerisque massa. Donec cursus nunc nec ligula laoreet condimentum. Aliquam volutpat, metus at ullamcorper venenatis, orci leo sodales sapien, nec efficitur enim lorem eleifend arcu. Fusce faucibus dolor lorem, sit amet laoreet nulla interdum vitae.</p>

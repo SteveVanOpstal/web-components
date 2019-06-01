@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <img :src="srcThumb" :alt="alt" class="thumb" v-bind:class="{ready: ready}">
+  <div :ready="ready">
+    <img :src="srcThumb" :alt="alt" class="thumb">
     <img :src="src" :alt="alt" @load="ready = true">
   </div>
 </template>
 
 <style lang="scss" scoped>
+div[ready] img.thumb {
+  opacity: 0;
+}
+
 img {
   width: 400px;
   height: 300px;
@@ -14,10 +18,6 @@ img {
     position: absolute;
     opacity: 1;
     transition: opacity 0.5s;
-
-    &.ready {
-      opacity: 0;
-    }
   }
 }
 </style>

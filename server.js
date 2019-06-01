@@ -6,10 +6,14 @@ const Jimp = require('jimp');
 const thumbs = [];
 
 fs.readdir('assets', (err, filesnames) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
   for (const filename of filesnames) {
     Jimp.read(__dirname + '/assets/' + filename).then((image) => {
       const thumb = image
-        .resize(160, 120)
+        .resize(image.getWidth() / 20, image.getHeight() / 20)
         .quality(60)
         .greyscale()
         .blur(1);
@@ -22,21 +26,21 @@ fs.readdir('assets', (err, filesnames) => {
   }
 });
 
-app.all('/assets/*', (req, res) => {
+app.get('/assets/*', (req, res) => {
   setTimeout(() => {
     console.log('delaying: ' + req.url);
-    res.sendfile(__dirname + '/' + req.url);
+    res.sendFile(__dirname + '/' + req.url);
   }, 4000);
 });
 
-app.all('/thumb/*', (req, res) => {
+app.get('/thumbs/*', (req, res) => {
   const thumb = thumbs.find(t => req.url.indexOf(t.name) > -1);
   res.contentType('jpeg');
   res.end(thumb.data, 'binary');
 });
 
 app.all('*', (req, res) => {
-  res.sendfile(__dirname + '/' + req.url);
+  res.sendFile(__dirname + '/' + req.url);
 });
 
 const port = 3200;
