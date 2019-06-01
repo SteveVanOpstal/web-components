@@ -6,20 +6,31 @@ class LoadImage extends Component {
     super(props);
     this.state = {
       ready: false,
+      src: '',
+      srcThumb: '',
+      alt: ''
     };
   }
 
   render() {
-    let className = 'thumb';
-    if (this.state.ready) {
-      className += ' ready';
-    }
     return (
-      <div>
-        <img src={this.props.srcThumb} alt={this.props.alt} className={className}/>
-        <img src={this.props.src} alt={this.props.alt} onLoad={() => this.setState({ready: true})}/>
+      <div ready={this.state.ready ? '' : undefined}>
+        <img src={this.state.srcThumb} alt={this.state.alt} className="thumb"/>
+        <img src={this.state.src} alt={this.state.alt} onLoad={() => this.setState({ready: true})}/>
       </div>
     );
+  }
+
+  webComponentConstructed(el) {
+    if (el.attributes) {
+      this.setState(
+        {
+          src: el.attributes.src ? (el.attributes.src.value || '') : '',
+          srcThumb: el.attributes['src-thumb'] ? el.attributes['src-thumb'].value || '' : '',
+          alt: el.attributes.alt ? el.attributes.alt.value || '' : ''
+        }
+      );
+    }
   }
 }
 

@@ -1,14 +1,14 @@
-img {
+react-load-image div[ready] img.thumb {
+  opacity: 0;
+}
+
+react-load-image img {
   width: 400px;
   height: 300px;
 }
 
-img.thumb {
+react-load-image img.thumb {
   position: absolute;
   opacity: 1;
   transition: opacity .5s;
-}
-
-img.thumb.ready {
-  opacity: 0;
 }
