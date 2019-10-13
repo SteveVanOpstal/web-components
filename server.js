@@ -18,7 +18,7 @@ fs.readdir('assets', (err, filesnames) => {
         .greyscale()
         .blur(1);
       thumb.getBufferAsync(Jimp.MIME_JPEG).then((data) => {
-        thumbs.push({name: filename, data: data});
+        thumbs.push({ name: filename, data: data });
       });
     }).catch((err) => {
       console.error(err);
@@ -26,11 +26,18 @@ fs.readdir('assets', (err, filesnames) => {
   }
 });
 
+// mimicking a slow connection
+const requests = [];
 app.get('/assets/*', (req, res) => {
-  setTimeout(() => {
-    console.log('delaying: ' + req.url);
+  if (!requests.includes(req.url)) {
+    // requests.push(req.url);
+    // setTimeout(() => {
+    // console.log('delaying: ' + req.url);
     res.sendFile(__dirname + '/' + req.url);
-  }, 4000);
+    // }, 3000);
+  } else {
+    res.sendFile(__dirname + '/' + req.url);
+  }
 });
 
 app.get('/thumbs/*', (req, res) => {

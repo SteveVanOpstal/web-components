@@ -1,4 +1,4 @@
-import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
+import { Component, HostBinding, Input, ViewEncapsulation, HostListener, AfterViewInit, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'angular-load-image',
@@ -8,10 +8,16 @@ import {Component, HostBinding, Input, ViewEncapsulation} from '@angular/core';
   styleUrls: ['load-image.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class LoadImageComponent {
+export class LoadImageComponent implements OnChanges {
   @Input() src: string;
   @Input() srcThumb: string;
   @Input() alt: string;
 
-  @HostBinding('attr.ready') ready;
+  @HostBinding('attr.ready') ready: boolean;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.src && changes.src) {
+      this.ready = false;
+    }
+  }
 }

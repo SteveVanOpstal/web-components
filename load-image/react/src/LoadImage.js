@@ -1,36 +1,41 @@
-import React, { Component } from 'react';
-import './LoadImage.css';
+import React from 'react';
 
-class LoadImage extends Component {
+import styled from 'styled-components';
+
+const Image = styled.img`
+  width: 400px;
+  height: 300px;
+`
+
+const Thumb = styled.img`
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  opacity: ${props => props.ready ? 0 : 1};
+  transition: opacity .5s;
+`
+
+class LoadImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       ready: false,
-      src: '',
-      srcThumb: '',
-      alt: ''
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.src !== prevProps.src) {
+      this.setState({ ready: false });
+    }
   }
 
   render() {
     return (
-      <div ready={this.state.ready ? '' : undefined}>
-        <img src={this.state.srcThumb} alt={this.state.alt} className="thumb"/>
-        <img src={this.state.src} alt={this.state.alt} onLoad={() => this.setState({ready: true})}/>
+      <div>
+        <Thumb src={this.props.srcThumb} alt={this.props.alt} className="thumb" ready={this.state.ready}></Thumb>
+        <Image src={this.props.src} alt={this.props.alt} onLoad={() => this.setState({ ready: true })}></Image>
       </div>
     );
-  }
-
-  webComponentConstructed(el) {
-    if (el.attributes) {
-      this.setState(
-        {
-          src: el.attributes.src ? (el.attributes.src.value || '') : '',
-          srcThumb: el.attributes['src-thumb'] ? el.attributes['src-thumb'].value || '' : '',
-          alt: el.attributes.alt ? el.attributes.alt.value || '' : ''
-        }
-      );
-    }
   }
 }
 

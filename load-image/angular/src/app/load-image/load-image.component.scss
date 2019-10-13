@@ -1,4 +1,4 @@
-:host([ready]) img.thumb {
+:host([ready=true]) img.thumb {
   opacity: 0;
 }
 

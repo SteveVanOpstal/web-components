@@ -1,11 +1,12 @@
 customElements.define('vanillajs-load-image',
   class extends HTMLElement {
+    thumb = document.createElement('img');
+    img = document.createElement('img');
+
     constructor() {
       super();
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      const thumb = document.createElement('img');
-      const img = document.createElement('img');
+      const shadowRoot = this.attachShadow({ mode: 'open' });
 
       const style = document.createElement('style');
       style.textContent = `
@@ -25,21 +26,37 @@ customElements.define('vanillajs-load-image',
         }`;
 
       shadowRoot.appendChild(style);
-      shadowRoot.appendChild(thumb);
-      shadowRoot.appendChild(img);
+      shadowRoot.appendChild(this.thumb);
+      shadowRoot.appendChild(this.img);
 
-      thumb.classList.add('thumb');
+      this.thumb.classList.add('thumb');
 
-      img.src = this.getAttribute('src');
-      thumb.src = this.getAttribute('src-thumb');
-      
+      this.img.src = this.getAttribute('src');
+      this.thumb.src = this.getAttribute('src-thumb');
+
       const alt = this.getAttribute('alt');
-      img.alt = alt;
-      thumb.alt = alt;
+      this.img.alt = alt;
+      this.thumb.alt = alt;
 
-      img.addEventListener('load', () => {
+      this.img.addEventListener('load', () => {
         this.setAttribute('ready', '');
       });
+    }
+
+    static get observedAttributes() { return ['src', 'src-thumb', 'alt']; }
+
+    attributeChangedCallback(name, _oldValue, newValue) {
+      if (name === 'src') {
+        this.img.src = newValue;
+        this.removeAttribute('ready');
+      }
+      if (name === 'src-thumb') {
+        this.thumb.src = newValue;
+      }
+      if (name === 'alt') {
+        this.img.alt = newValue;
+        this.thumb.alt = newValue;
+      }
     }
   }
 );

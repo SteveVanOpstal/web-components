@@ -1,7 +1,7 @@
 <template>
   <div :ready="ready">
-    <img :src="srcThumb" :alt="alt" class="thumb">
-    <img :src="src" :alt="alt" @load="ready = true">
+    <img :src="srcThumb" :alt="alt" class="thumb" />
+    <img :src="src" :alt="alt" @load="ready = true" />
   </div>
 </template>
 
@@ -34,6 +34,11 @@ export default
     src: String,
     srcThumb: String,
     alt: String
+  },
+  watch: {
+    src: function() {
+      this.ready = false;
+    }
   }
 })
 class LoadImage extends Vue {
