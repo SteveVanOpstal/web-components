@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "lerna": "lerna"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "@jimp/plugin-blur": "^0.6.0",
     "@teamthread/custom-react-elements": "^0.1.0",
     "express": "^4.16.4",
+    "express-cache-headers": "^0.1.4",
     "jimp": "^0.6.0"
   }
 }

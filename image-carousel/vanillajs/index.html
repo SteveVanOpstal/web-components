@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>web components</title>
-  <base href="/image-carousel/angular/dist/angular/">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <base href="">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" type="text/css" href="/style.css">
 
   <style>
@@ -12,6 +12,8 @@
     h1 {text-align: center; font-size: 50px;}
     nav {margin: 0 auto; width: 500px; font-size: 30px;}
   </style>
+  
+  <script defer type="text/javascript" src="script.js"></script>
 
   <!-- angular-load-image -->
   <script defer type="text/javascript" src="http://localhost:3200/load-image/angular/dist/angular/runtime.js"></script>
@@ -25,10 +27,12 @@
   <!-- react-load-image -->
   <script defer type="text/javascript" src="http://localhost:3200/load-image/react/dist/react-load-image.js"></script>
 
-  <!-- vanillajs-load-image --> 
+  <!-- vanillajs-load-image -->
   <script defer type="text/javascript" src="http://localhost:3200/load-image/vanillajs/load-image.js"></script>
 </head>
 <body>
+  <a href="/"><h1>Web Components</h1></a>
+
   <nav>
     <a href="/load-image/index.html">Load image</a>
     <a href="/image-carousel/angular/dist/angular/index.html">carousel</a>
@@ -37,8 +41,15 @@
     <a href="">VanillaJs</a>
   </nav>
 
-  <app-root></app-root>
-  <angular-load-image src="test.png" srcThumb="test.png" alt="angular">Loading..</angular-load-image>
+  <button id="prev">Prev</button>
+  <button id="next">Next</button>
+
+  <div class="grid">
+    <angular-load-image id="angular" alt="angular">Loading Angular..</angular-load-image>
+    <vue-load-image id="vue" alt="vue">Loading Vue..</vue-load-image>
+    <react-load-image id="react" alt="react">Loading React..</react-load-image>
+    <vanillajs-load-image id="vanillajs" alt="javascript">Loading VanillaJs..</vanillajs-load-image>
+  </div>
 
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra metus vitae turpis lacinia interdum. Pellentesque eu quam quis neque egestas vulputate. Donec vehicula bibendum tellus eu ultricies. Donec auctor in neque vel iaculis. Vestibulum non mauris quis metus mattis hendrerit. Fusce volutpat viverra egestas. In ultrices odio mollis, ornare diam in, auctor lorem. Nullam sed viverra turpis, a pellentesque diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis eu tortor et elit consectetur imperdiet a vitae orci. Duis sagittis mauris risus, et ullamcorper neque aliquam non. Quisque sed tortor diam. Proin interdum tempor varius.</p>
   <p>Nunc ac lectus tempor, aliquet velit et, laoreet libero. Maecenas a nisl quam. Morbi sollicitudin vehicula elementum. Sed ultrices ipsum eget mi posuere, eu vulputate erat vestibulum. Phasellus ut magna consequat dolor consectetur placerat. Pellentesque a convallis neque. Ut sit amet velit odio. Donec sit amet scelerisque massa. Donec cursus nunc nec ligula laoreet condimentum. Aliquam volutpat, metus at ullamcorper venenatis, orci leo sodales sapien, nec efficitur enim lorem eleifend arcu. Fusce faucibus dolor lorem, sit amet laoreet nulla interdum vitae.</p>
