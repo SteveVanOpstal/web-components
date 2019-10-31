@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>web components</title>
-    <base href="/image-carousel/react/build/">
+    <base href="/carousel/vue-carousel/dist/">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="http://localhost:3200/style.css">
     <script type="text/javascript" src="http://localhost:3200/navigation.js"></script>
@@ -18,24 +18,26 @@
     <link rel="preload" href="http://localhost:3200/thumbs/3.jpg" as="image">
   
     <!-- angular-load-image -->
-    <script defer type="text/javascript" src="http://localhost:3200/load-image/angular/dist/angular-load-image.js"></script>
+    <script defer type="text/javascript" src="http://localhost:3200/load-image/angular-load-image/dist/angular-load-image.js"></script>
   
     <!-- vue-load-image -->
     <script defer type="text/javascript" src="https://unpkg.com/vue"></script>
-    <script defer type="text/javascript" src="http://localhost:3200/load-image/vue/dist/vue-load-image.min.js"></script>
+    <script defer type="text/javascript" src="http://localhost:3200/load-image/vue-load-image/dist/vue-load-image.min.js"></script>
   
     <!-- react-load-image -->
-    <script defer type="text/javascript" src="http://localhost:3200/load-image/react/dist/react-load-image.js"></script>
+    <script defer type="text/javascript" src="http://localhost:3200/load-image/react-load-image/dist/react-load-image.js"></script>
   
     <!-- javascript-load-image -->
-    <script defer type="text/javascript" src="http://localhost:3200/load-image/javascript/load-image.js"></script>
+    <script defer type="text/javascript" src="http://localhost:3200/load-image/javascript-load-image/javascript-load-image.js"></script>
   </head>
   <body>
     <a href="/"><h1>Web Components</h1></a>
   
     <web-components-navigation></web-components-navigation>
-  
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+
+    <noscript>
+      <strong>We're sorry but vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
   </body>
 </html>

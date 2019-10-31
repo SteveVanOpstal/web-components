@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "react-load-image",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,8 +16,7 @@
     "webpack-cli": "^3.3.2"
   },
   "scripts": {
-    "build": "webpack --mode production",
-    "build:web-component": "webpack --mode production"
+    "build": "webpack --mode production"
   },
   "eslintConfig": {
     "extends": "react"

@@ -19,3 +19,14 @@ h1 {
   margin: 0 auto;
   padding: 20px 0;
 }
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.actions > button {
+  font-size: 1rem;
+  margin: 0.5rem;
+}

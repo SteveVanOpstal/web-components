@@ -15,5 +15,8 @@
     "express": "^4.16.4",
     "express-cache-headers": "^0.1.4",
     "jimp": "^0.6.0"
+  },
+  "devDependencies": {
+    "lerna": "^3.18.1"
   }
 }

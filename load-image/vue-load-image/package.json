@@ -1,12 +1,11 @@
 {
-  "name": "vue",
+  "name": "vue-load-image",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:web-component": "vue-cli-service build --target wc --name vue-load-image ./src/components/LoadImage.vue",
+    "build": "vue-cli-service build --target wc --name vue-load-image ./src/components/LoadImage.vue",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

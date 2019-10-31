@@ -79,9 +79,4 @@ class App extends Vue {
   width: 100px;
   z-index: 1;
 }
-
-.actions {
-  display: flex;
-  justify-content: center;
-}
 </style>

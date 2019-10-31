@@ -26,23 +26,23 @@ const ROUTES = [
     ]
   },
   {
-    path: '/image-carousel',
+    path: '/carousel',
     label: 'Carousel',
     routes: [
       {
-        path: '/image-carousel/javascript/index.html',
+        path: '/carousel/javascript-carousel/index.html',
         label: 'JavaScript'
       },
       {
-        path: '/image-carousel/angular/dist/angular/index.html',
+        path: '/carousel/angular-carousel/dist/index.html',
         label: 'Angular'
       },
       {
-        path: '/image-carousel/vue/dist/index.html',
+        path: '/carousel/vue-carousel/dist/index.html',
         label: 'Vue'
       },
       {
-        path: '/image-carousel/react/build/index.html',
+        path: '/carousel/react-carousel/build/index.html',
         label: 'React'
       },
     ]

@@ -1,11 +1,10 @@
 {
-  "name": "angular",
+  "name": "angular-load-image",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build:web-component": "ng build -c=web-component && concat -o ./dist/angular-load-image.js ./dist/runtime.js ./dist/polyfills.js ./dist/main.js && node scripts/replace-jsonp.js",
+    "build": "ng build -c=web-component && concat -o ./dist/angular-load-image.js ./dist/runtime.js ./dist/polyfills.js ./dist/main.js && node scripts/replace-jsonp.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
