@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +9,14 @@ export class AppComponent {
   index = 0;
 
   prev() {
+    this.index += 1;
+    this.index %= 4;
+  }
+
+  next() {
     this.index -= 1;
     if (this.index < 0) {
       this.index = 3;
     }
-  }
-
-  next() {
-    this.index += 1;
-    this.index %= 4;
   }
 }

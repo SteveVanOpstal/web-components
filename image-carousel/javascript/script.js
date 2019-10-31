@@ -1,7 +1,7 @@
 const angular = document.getElementById('angular');
 const vue = document.getElementById('vue');
 const react = document.getElementById('react');
-const vanillajs = document.getElementById('vanillajs');
+const javascript = document.getElementById('javascript');
 
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
@@ -19,8 +19,8 @@ function changes() {
   vue.setAttribute('src-thumb', imageIndex(index + 1, 'thumbs'));
   react.setAttribute('src', imageIndex(index + 2, 'assets'));
   react.setAttribute('src-thumb', imageIndex(index + 2, 'thumbs'));
-  vanillajs.setAttribute('src', imageIndex(index + 3, 'assets'));
-  vanillajs.setAttribute('src-thumb', imageIndex(index + 3, 'thumbs'));
+  javascript.setAttribute('src', imageIndex(index + 3, 'assets'));
+  javascript.setAttribute('src-thumb', imageIndex(index + 3, 'thumbs'));
 }
 
 prev.addEventListener('click', () => {

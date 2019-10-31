@@ -1,6 +1,8 @@
 import React from 'react';
-
 import styled from 'styled-components';
+
+import styles from './LoadImage.css';
+
 
 const Image = styled.img`
   width: 400px;
@@ -31,7 +33,7 @@ class LoadImage extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class={styles['load-image']}>
         <Thumb src={this.props.srcThumb} alt={this.props.alt} className="thumb" ready={this.state.ready}></Thumb>
         <Image src={this.props.src} alt={this.props.alt} onLoad={() => this.setState({ ready: true })}></Image>
       </div>

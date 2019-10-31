@@ -6,25 +6,27 @@ var cache = require('express-cache-headers');
 
 const thumbs = [];
 
-fs.readdir('assets', (err, filesnames) => {
+fs.readdir('assets', (err, filenames) => {
   if (err) {
     console.error(err);
     process.exit(1);
   }
-  for (const filename of filesnames) {
-    Jimp.read(__dirname + '/assets/' + filename).then((image) => {
-      const thumb = image
-        .resize(200, Jimp.AUTO)
-        .quality(80)
-        .greyscale()
-        .blur(1);
-      thumb.getBufferAsync(Jimp.MIME_JPEG).then((data) => {
-        console.log(`${filename.padEnd(20)}: ${data.byteLength} bytes`);
-        thumbs.push({ name: filename, data: data });
+  for (const filename of filenames) {
+    if (filename.indexOf('.') >= 0) {
+      Jimp.read(__dirname + '/assets/' + filename).then((image) => {
+        const thumb = image
+          .resize(200, Jimp.AUTO)
+          .quality(80)
+          .greyscale()
+          .blur(1);
+        thumb.getBufferAsync(Jimp.MIME_JPEG).then((data) => {
+          console.log(`${filename.padEnd(20)}: ${data.byteLength} bytes`);
+          thumbs.push({ name: filename, data: data });
+        });
+      }).catch((err) => {
+        console.error(err);
       });
-    }).catch((err) => {
-      console.error(err);
-    });
+    }
   }
 });
 

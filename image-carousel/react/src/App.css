@@ -1,0 +1,22 @@
+#root {
+  position: relative;
+  display: block;
+  border: 5px solid #61dafb;
+}
+
+#root::before {
+  content: "";
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/react.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}

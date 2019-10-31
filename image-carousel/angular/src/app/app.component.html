@@ -1,9 +1,11 @@
-<button (click)="prev()">Prev</button>
-<button (click)="next()">Next</button>
+<div class="actions">
+  <button (click)="prev()">Prev</button>
+  <button (click)="next()">Next</button>
+</div>
 
 <div class="grid">
-  <angular-load-image [attr.src]="index | imageIndex: 'assets'" [attr.src-thumb]="index | imageIndex: 'thumbs'" alt="angular">Loading..</angular-load-image>
-  <vue-load-image [attr.src]="(index + 1) | imageIndex: 'assets'" [attr.src-thumb]="(index + 1) | imageIndex: 'thumbs'" alt="vue">Loading..</vue-load-image>
-  <react-load-image [attr.src]="(index + 2) | imageIndex: 'assets'" [attr.src-thumb]="(index + 2) | imageIndex: 'thumbs'" alt="react">Loading..</react-load-image>
-  <vanillajs-load-image [attr.src]="(index + 3) | imageIndex: 'assets'" [attr.src-thumb]="(index + 3) | imageIndex: 'thumbs'" alt="vanillajs">Loading..</vanillajs-load-image>
+  <angular-load-image [attr.src]="index | imageIndex: 'assets'" [attr.src-thumb]="index | imageIndex: 'thumbs'" alt="angular">Loading Angular..</angular-load-image>
+  <vue-load-image [attr.src]="(index + 1) | imageIndex: 'assets'" [attr.src-thumb]="(index + 1) | imageIndex: 'thumbs'" alt="vue">Loading Vue..</vue-load-image>
+  <react-load-image [attr.src]="(index + 2) | imageIndex: 'assets'" [attr.src-thumb]="(index + 2) | imageIndex: 'thumbs'" alt="react">Loading React..</react-load-image>
+  <javascript-load-image [attr.src]="(index + 3) | imageIndex: 'assets'" [attr.src-thumb]="(index + 3) | imageIndex: 'thumbs'" alt="javascript">Loading JavaScript..</javascript-load-image>
 </div>

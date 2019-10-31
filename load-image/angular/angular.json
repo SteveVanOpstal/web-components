@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -56,8 +56,8 @@
                 }
               ]
             },
-            "web-components": {
-              "main": "src/main.web-components.ts",
+            "web-component": {
+              "main": "src/main.web-component.ts",
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,
@@ -87,6 +87,41 @@
             "tsConfig": [
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "my-lib": {
+      "projectType": "library",
+      "root": "projects/my-lib",
+      "sourceRoot": "projects/my-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/my-lib/tsconfig.lib.json",
+            "project": "projects/my-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/my-lib/src/test.ts",
+            "tsConfig": "projects/my-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/my-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/my-lib/tsconfig.lib.json",
+              "projects/my-lib/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

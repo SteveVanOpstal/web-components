@@ -1,11 +1,32 @@
 <template>
-  <div :ready="ready">
+  <div class="root" :ready="ready">
     <img :src="srcThumb" :alt="alt" class="thumb" />
     <img :src="src" :alt="alt" @load="ready = true" />
   </div>
 </template>
 
 <style lang="scss" scoped>
+.root {
+  display: block;
+  position: relative;
+  border: 5px solid #35495e;
+  width: 400px;
+  height: 300px;
+  margin: auto;
+}
+
+.root::before {
+  content: "";
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/vue.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
 div[ready] img.thumb {
   opacity: 0;
 }
