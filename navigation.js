@@ -52,10 +52,10 @@ const ROUTES = [
 
 customElements.define('web-components-navigation',
   class extends HTMLElement {
-    nav = document.createElement('nav');
-
     constructor() {
       super();
+
+      const nav = document.createElement('nav');
 
       const shadowRoot = this.attachShadow({ mode: 'open' });
 
@@ -70,14 +70,14 @@ customElements.define('web-components-navigation',
         }`;
 
       shadowRoot.appendChild(style);
-      shadowRoot.appendChild(this.nav);
+      shadowRoot.appendChild(nav);
 
       for (const route of ROUTES) {
         const anchor = document.createElement('a');
         anchor.href = route.routes ? route.routes[0].path : route.path;
         anchor.innerHTML = route.label;
 
-        this.nav.appendChild(anchor);
+        nav.appendChild(anchor);
 
         if (route.routes && route.routes.length && window.location.pathname.indexOf(route.path) > -1) {
           const subNav = document.createElement('nav');
