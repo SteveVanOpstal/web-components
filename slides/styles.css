@@ -1,0 +1,134 @@
+body {
+  font-family: sans-serif, monopsace, consolas;
+  font-size: 20px;
+}
+
+button {
+  font-size: 20px;
+}
+
+h1, h2, h3, p, pre {
+  margin: 0;
+}
+
+pre {
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.columns {
+  display: flex;
+}
+
+.column {
+  margin: 1rem;
+}
+
+.hljs {
+  background: bisque;
+  border-radius: 12px;
+  padding: 0 1rem;
+}
+
+.custom-elements-example {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.fake-test-button {
+  position: absolute;
+  top: 110px;
+  left: 14px;
+}
+
+.custom-elements-example-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+#overview-button {
+  background: none;
+  border: none;
+}
+
+#overview-button:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+
+.step {
+  position: relative;
+  width: 1000px;
+  height: 800px;
+  padding: 90px 110px;
+
+  box-sizing: border-box;
+
+  color: rgb(95, 95, 95);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
+  font-size: 30px;
+  letter-spacing: -1px;
+  line-height: 1.5;
+}
+
+.small-step {
+  padding: 90px 190px;
+}
+
+.large-step {
+  padding: 0;
+  margin: 0 auto;
+}
+
+#overview {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+
+/***** Fallback message *****/
+
+.fallback-message {
+  position: absolute;
+  bottom: 0;
+  font-family: sans-serif;
+  line-height: 1.3;
+
+  width: 780px;
+  padding: 0 10px;
+  margin: 20px auto;
+
+  border-radius: 10px;
+  background: #aaa;
+}
+
+.fallback-message p {
+  margin-bottom: 10px;
+}
+
+.impress-supported .fallback-message {
+  display: none;
+}
+
+
+/***** progressbar *****/
+
+.impress-progressbar {
+  position: absolute;
+  right: 318px;
+  bottom: 1px;
+  left: 118px;
+  border-radius: 7px;
+  border: 2px solid rgba(100, 100, 100, 0.2);
+}
+.impress-progressbar DIV {
+  width: 0;
+  height: 2px;
+  border-radius: 5px;
+  background: rgba(75, 75, 75, 0.4);
+  transition: width 1s linear;
+}

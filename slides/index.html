@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title></title>
+    
+    <meta name="description" content="" />
+    <meta name="author" content="Steve Van Opstal" />
+    <!--
+        
+        Impress.js doesn't depend on any external stylesheets. It adds all of the styles it needs for the
+        presentation to work.
+        
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+        
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+        
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+        
+    -->
+    <!-- <link href="css/impress-demo.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="./extras/highlight/styles/github.css">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <link href="./examples/markdown/css/markdown-slides.css" rel="stylesheet" /> -->
+    <!-- <link href="css/devopsy.css" rel="stylesheet" />
+    <link href="css/effects.css" rel="stylesheet" />
+     -->
+    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+    <!-- caniuse embed -->
+    <script src="../node_modules/caniuse-web-component/public/can-i-use.js"></script>
+</head>
+
+<!--
+    
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+    
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+    
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+    
+    The class name on body element also depends on currently active presentation step. More details about
+    it can be found later, when `hint` element is being described.
+    
+-->
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    
+    Now that's the core element used by impress.js.
+    
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+    
+    You probably won't need it now, but there are some configuration options that can be set on this element.
+    
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+    
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+    
+    But as I said, you won't need it for now, so don't worry - there are some simple but interesting things
+    right around the corner of this tag ;)
+    
+    ----------
+    Plugins: We set the default time for autoplay plugin to 6 seconds. Autoplay will automatically advance
+    to next slide after a timeout expires.
+    
+-->
+<div id="impress">
+
+<div id="start" class="step small-step slide markdown" data-rel-x="0" data-rel-y="0">
+# Web components,
+# what to do with them?
+### by Steve Van Opstal
+
+
+
+<!-- [stevevanopstal.be](https://stevevanopstal.be) -->
+
+</div>
+<div id="intro" class="step slide" data-rel-x="0" data-rel-y="1000">
+<h1>Short introduction to Web Components</h1>
+
+<p>Web Components are a set of browser features:</p>
+<ul>
+  <li>
+    <p>Shadow DOM</p>
+  </li>
+  <li>
+    <p>Custom Elements</p>
+  </li>
+  <li>
+    <p>HTML templates</p>
+  </li>
+</ul>
+
+<p>&nbsp;</p>
+<p>
+  Check out 
+  <a href="webcomponents.org">webcomponents.org</a>
+</p>
+
+</div>
+
+<div id="intro-shadow-dom1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+  <h1>What is Shadow DOM?</h1>
+  <h2>Element.attachShadow()</h2>
+
+  <pre><code class="html">
+<div id="shadow-dom-example"></div>
+<script>
+  const example = document.getElementById('shadow-dom-example');
+  const shadowRoot = example.attachShadow({mode: 'open'});
+
+  const button = document.createElement('button');
+  button.textContent = 'test';
+  shadowRoot.appendChild(button);
+</script>
+  </code></pre>
+
+  <p>HTML result:</p>
+  <pre><code class="html">
+<div id="shadow-dom-example">
+  #shadow-root
+    <button>test</button>
+</div>
+  </code></pre>
+
+  <p>result:</p>
+  <div id="shadow-dom-example0"></div>
+  <script>
+    (function () {
+      const example = document.getElementById('shadow-dom-example0');
+      const shadowRoot = example.attachShadow({mode: 'open'});
+    
+      const button = document.createElement('button');
+      button.textContent = 'test';
+      shadowRoot.appendChild(button);
+    })();
+  </script>
+
+</div>
+
+<div id="intro-shadow-dom2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+  <h1>What is Shadow DOM?</h1>
+
+  <div class="columns">
+
+    <div class="column">
+      <p>Shadow DOM</p>
+
+      <pre><code class="html">
+<div>
+  #shadow-root
+    <style>
+      .test {
+        color: green;
+      }
+    </style>
+    <button class="test">test</button>
+</div>
+<style>
+  .test {
+    color: red;
+  }
+</style>
+      </code></pre>
+
+      <p>result: </p>
+      <div id="shadow-dom-example1"></div>
+      <script>
+        (function () {
+          const example = document.getElementById('shadow-dom-example1');
+          const shadowRoot = example.attachShadow({mode: 'open'});
+          const style = document.createElement('style');
+          style.textContent = `
+            .test {
+              color: green;
+            }
+            `;
+          shadowRoot.appendChild(style);
+
+          const button = document.createElement('button');
+          button.textContent = 'test';
+          button.classList.add('test');
+          shadowRoot.appendChild(button);
+        })();
+      </script>
+      <style>
+        .test {
+          color: red;
+        }
+      </style>
+    </div>
+
+    <div class="column">
+      <p>No Shadow DOM</p>
+
+      <pre><code class="html">
+<div>
+
+  <style>
+    .test {
+      color: green;
+    }
+  </style>
+  <button class="test">test</button>
+</div>
+<style>
+  .test {
+    color: red;
+  }
+</style>
+      </code></pre>
+
+      <p>result: </p>
+      <div id="shadow-dom-example2"></div>
+      <script>
+        (function () {
+          const example = document.getElementById('shadow-dom-example2');
+          const style = document.createElement('style');
+          style.textContent = `
+            .test {
+              color: green;
+            }
+            `;
+          example.appendChild(style);
+
+          const button = document.createElement('button');
+          button.textContent = 'test';
+          button.classList.add('test');
+          example.appendChild(button);
+        })();
+      </script>
+      <style>
+        .test {
+          color: red;
+        }
+      </style>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="intro-custom-elements" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+  <h1>What are Custom Elements?</h1>
+  <h2>customElements.define()</h2>
+
+  
+  <!-- haven't found a way yet to add `<test-button></test-button>` without the component actually working -->
+  <!-- <img class="fake-test-button" src="images/fake-test-button.png"> -->
+
+  <pre class="custom-elements-example"><code class="html">
+<test-button></test-button>
+<script>
+  class CustomElement extends HTMLElement {
+    constructor() {
+      super();
+
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      this.appendChild(shadowRoot);
+
+      const button = document.createElement('button');
+      button.textContent = 'test';
+      shadowRoot.appendChild(button);
+    }
+  }
+  customElements.define('test-button', CustomElement);
+</script>
+  </code></pre>
+
+  <div class="custom-elements-example-result">
+    <div>
+      <p>HTML result:</p>
+      <pre><code class="html">
+  <test-button>
+    #shadow-root
+    <button>test</button>
+  </test-button>
+      </code></pre>
+    </div>
+
+    <div>
+      <p>result:</p>
+      <test-button></test-button>
+    </div>
+  </div>
+</div>
+
+
+<div id="intro-html-templates-attempt-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+  <h1>What are HTML templates?</h1>
+  <h2>&lt;template> &amp; &lt;slot></h2>
+
+  
+  <pre class="custom-elements-example"><code>
+<template id="template">
+  <button>
+    <slot name="content">test</slot>
+  </button>
+</template>
+<web-component></web-component>
+<web-component>
+  <span slot="content">not test</span>
+</web-component>
+<script>
+  class WebComponent extends HTMLElement {
+    constructor() {
+      super();
+
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      const template = document.createElement('template');
+      shadowRoot.appendChild(button);
+
+      const button = document.createElement('button');
+      shadowRoot.appendChild(button);
+
+      const slot = document.createElement('slot');
+      slot.textContent = 'test';
+      button.appendChild(slot);
+    }
+  }
+  customElements.define('web-component', WebComponent);
+</script>
+    </code></pre>
+
+    <!-- TODO REMOVE -->
+  <web-component></web-component>
+  <web-component>
+    <span slot="content">not test</span>
+  </web-component>
+  <!-- TODO REMOVE END -->
+
+
+    <p>HTML result:</p>
+    
+  <pre><code>
+<web-component>
+  <button>test</button>
+</web-component>
+<web-component>
+  <button><span slot="content">not test</span></button>
+</web-component>
+  </code></pre>
+
+    <p>result:</p>
+  <web-component></web-component>
+  <web-component>
+    <span slot="content">not test</span>
+  </web-component>
+</div>
+
+<div id="intro-html-templates" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+    <h1>What are HTML templates?</h1>
+    <h2>&lt;template> &amp; &lt;slot></h2>
+  
+    
+    <pre class="custom-elements-example"><code>
+  <template id="template">
+    <button>
+      <slot name="content">test</slot>
+    </button>
+  </template>
+  <web-component></web-component>
+  <web-component>
+    <span slot="content">not test</span>
+  </web-component>
+  <script>
+    // class WebComponent extends HTMLElement {
+    //   constructor() {
+    //     super();
+  
+    //     const template = document.getElementById('template');
+    //     const templateContent = template.content;
+  
+    //     const shadowRoot = this.attachShadow({mode: 'open'});
+    //     shadowRoot.appendChild(templateContent.cloneNode(true));
+    //   }
+    // }
+    // customElements.define('web-component', WebComponent);
+  </script>
+      </code></pre>
+  
+      <p>HTML result:</p>
+      
+    <pre><code>
+  <web-component>
+    <button>test</button>
+  </web-component>
+  <web-component>
+    <button><span slot="content">not test</span></button>
+  </web-component>
+    </code></pre>
+  
+      <p>result:</p>
+    <web-component></web-component>
+    <web-component>
+      <span slot="content">not test</span>
+    </web-component>
+  </div>
+
+<div id="support" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+  <h1>Web Components support</h1>
+
+  <ul>
+    <li>
+      <p>Shadow DOM v1</p>
+      <can-i-use
+        type="shadowdomv1"
+        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
+      ></can-i-use>
+      <can-i-use-total type="shadowdomv1"></can-i-use-total>
+    </li>
+    <li>
+      <p>Custom Elements v1</p>
+      <can-i-use
+        type="custom-elementsv1"
+        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
+      ></can-i-use>
+      <can-i-use-total type="custom-elementsv1"></can-i-use-total>
+    </li>
+    <li>
+      <p>HTML templates</p>
+      <can-i-use
+        type="template"
+        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
+      ></can-i-use>
+      <can-i-use-total type="template"></can-i-use-total>
+    </li>
+  </ul>
+  <p>data from <a href="caniuse.com">caniuse.com</a></p>
+</div>
+
+<div id="mmeslekm" class="step slide markdown" data-rel-x="0" data-rel-y="1000">
+# Markdown.js
+
+* Provided by [Markdown.js](https://github.com/evilstreak/markdown-js) in [extras/](https://github.com/impress/impress.js/tree/master/extras)
+* Jot down your bullet points in *Markdown* & have it automatically converted to HTML
+* Note: The Markdown is converted into a presentation client side, in the browser. This is unlike
+  existing tools like [Hovercraft](https://github.com/regebro/hovercraft) and 
+  markdown-impress where you generate a new
+  html file on the command line.
+* This combines the ease of typing Markdown with the full power of impress.js HTML5+CSS3+JavaScript!
+
+-----
+# Styles
+
+* You can use *italics* & **bold**
+* ...and `code`
+
+
+-----
+# A blockquote &amp; image
+
+<!-- ![Mother Teresa holding a newborn baby](images/3476636111_c551295ca4_b.jpg) -->
+
+> Spread love everywhere you go.
+> Let no one ever come to you without leaving happier.
+
+*-- Mother Teresa*
+
+Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476636111/)@Flickr. CC-BY 2.0
+
+-----
+# Code
+
+When also using [Highlight.js](https://highlightjs.org/) integration, code blocks in Markdown
+are converted to HTML first, then colored by Highlight.js:
+
+        // `init` API function that initializes (and runs) the presentation.
+        var init = function () {
+            if (initialized) { return; }
+            execPreInitPlugins();
+            
+            // First we set up the viewport for mobile devices.
+            // For some reason iPad goes nuts when it is not done properly.
+            var meta = $("meta[name='viewport']") || document.createElement("meta");
+            meta.content = "width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no";
+            if (meta.parentNode !== document.head) {
+                meta.name = 'viewport';
+                document.head.appendChild(meta);
+            }        
+
+-----
+
+# Slide separator
+
+* 5 dashes are used to separate slides:
+
+`-----`
+
+* Attributes from `div.step` element are simply repeated.
+  * Better use relative positioning, lest your slides will all be on top of each other.
+* If you need to set some attributes, just use HTML and create a div element, then write 
+  Markdown inside each div.
+</div>
+
+
+    <!--
+        
+        So to summarize of all the possible attributes used to position presentation steps, we have:
+        
+        * `data-x`, `data-y`, `data-z` - they define the position of **the center** of step element on
+            the canvas in pixels; their default value is 0;
+        * `data-rotate-x`, `data-rotate-y`, 'data-rotate-z`, `data-rotate` - they define the rotation of
+            the element around given axis in degrees; their default value is 0; `data-rotate` and `data-rotate-z`
+            are exactly the same;
+        * `data-scale` - defines the scale of step element; default value is 1
+        
+        These values are used by impress.js in CSS transformation functions, so for more information consult
+        CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
+        
+    -->
+    <div id="overview" class="step" data-x="450" data-y="1500" data-z="0" data-scale="5">
+    </div>
+
+</div>
+
+<button id="overview-button">overview</button>
+
+<div class="impress-progressbar"><div></div></div>
+<!--
+    This is a UI plugin. You can read more about plugins in src/plugins/README.md.
+    For now, I'll just tell you that this adds some graphical controls to navigate the
+    presentation. In the CSS file you can style them as you want. We've put them bottom right.
+-->
+<!-- <div id="impress-toolbar"></div> -->
+
+
+<!-- Extra modules
+     Load highlight.js, mermaid.js, markdown.js and MathJax.js from extras.
+     If you're curious about details, these are initialized in src/plugins/extras/extras.js -->
+  <script type="text/javascript" src="./extras/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="./extras/mermaid/mermaid.min.js"></script>
+  <script type="text/javascript" src="./extras/markdown/markdown.js"></script>
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<script>
+  document.getElementById('overview-button').addEventListener('click', ()=>{
+    impress().goto('overview')
+  });
+</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( stepIndex | stepElementId | stepElement, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+<!-- hacky solution for html code blocks -->
+<script>
+  document.querySelectorAll("code").forEach(function(element) {
+    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  });
+</script>
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->

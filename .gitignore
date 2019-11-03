@@ -44,3 +44,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# slides
+/slides/js/impress.min.js.map
+/slides/js/impress.min.js
+/slides/node_modules
+/slides/npm-debug.log
+/slides/*.tgz
+/slides/.brackets.json
+/slides/examples
+/slides/test

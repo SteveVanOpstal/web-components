@@ -13,6 +13,7 @@
     "@jimp/jpeg": "^0.6.0",
     "@jimp/plugin-blur": "^0.6.0",
     "@webcomponents/webcomponentsjs": "^2.3.0",
+    "caniuse-web-component": "^1.0.4",
     "express": "^4.16.4",
     "express-cache-headers": "^0.1.4",
     "jimp": "^0.6.0"
