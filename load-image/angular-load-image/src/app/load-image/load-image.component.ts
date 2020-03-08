@@ -1,10 +1,17 @@
-import { Component, HostBinding, Input, ViewEncapsulation, HostListener, AfterViewInit, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'angular-load-image',
   template: `
     <img [src]="srcThumb" [alt]="alt" class="thumb"/>
-    <img [src]="src" [alt]="alt" (load)="ready = true"/>`,
+    <img [src]="src" [alt]="alt" (load)="ready = true" loading="lazy"/>`,
   styleUrls: ['load-image.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
