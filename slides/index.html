@@ -1,14 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=1024" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title></title>
-    
-    <meta name="description" content="" />
-    <meta name="author" content="Steve Van Opstal" />
-    <!--
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title></title>
+
+  <meta name="description" content="" />
+  <meta name="author" content="Steve Van Opstal" />
+  <!--
         
         Impress.js doesn't depend on any external stylesheets. It adds all of the styles it needs for the
         presentation to work.
@@ -23,18 +24,22 @@
         When creating your own presentation get rid of this file. Start from scratch, it's fun!
         
     -->
-    <!-- <link href="css/impress-demo.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="./extras/highlight/styles/github.css">
-    <link rel="stylesheet" href="./styles.css">
-    <!-- <link href="./examples/markdown/css/markdown-slides.css" rel="stylesheet" /> -->
-    <!-- <link href="css/devopsy.css" rel="stylesheet" />
+  <!-- <link href="css/impress-demo.css" rel="stylesheet" /> -->
+  <script type="text/javascript" src="./extras/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" href="./extras/highlight/styles/github.css">
+  <link rel="stylesheet" href="./styles.css">
+  <!-- <link href="./examples/markdown/css/markdown-slides.css" rel="stylesheet" /> -->
+  <!-- <link href="css/devopsy.css" rel="stylesheet" />
     <link href="css/effects.css" rel="stylesheet" />
      -->
-    <link rel="shortcut icon" href="images/favicon.png" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="shortcut icon" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
-    <!-- caniuse embed -->
-    <script src="../node_modules/caniuse-web-component/public/can-i-use.js"></script>
+  <!-- caniuse embed -->
+  <script src="../node_modules/caniuse-web-component/public/can-i-use.js"></script>
+
+  <!-- font-size not part of the demo, just for the sake of it being readable -->
+  <style>button { font-size: 30px; }</style>
 </head>
 
 <!--
@@ -55,17 +60,19 @@
     it can be found later, when `hint` element is being described.
     
 -->
+
 <body class="impress-not-supported">
 
-<!--
+  <!--
     For example this fallback message is only visible when there is `impress-not-supported` class on body.
 -->
-<div class="fallback-message">
-    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified
+      version of this presentation.</p>
     <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
-</div>
+  </div>
 
-<!--
+  <!--
     
     Now that's the core element used by impress.js.
     
@@ -90,137 +97,99 @@
     to next slide after a timeout expires.
     
 -->
-<div id="impress">
+  <div id="impress">
 
-<div id="start" class="step small-step slide markdown" data-rel-x="0" data-rel-y="0">
+    <div id="start" class="step small-step slide markdown" data-rel-x="0" data-rel-y="0">
 # Web components,
 # what to do with them?
 ### by Steve Van Opstal
 
 
 
-<!-- [stevevanopstal.be](https://stevevanopstal.be) -->
+      <!-- [stevevanopstal.be](https://stevevanopstal.be) -->
 
-</div>
-<div id="intro" class="step slide" data-rel-x="0" data-rel-y="1000">
-<h1>Short introduction to Web Components</h1>
+    </div>
 
-<p>Web Components are a set of browser features:</p>
-<ul>
-  <li>
-    <p>Shadow DOM</p>
-  </li>
-  <li>
-    <p>Custom Elements</p>
-  </li>
-  <li>
-    <p>HTML templates</p>
-  </li>
-</ul>
+    <div id="intro-1" class="step slide" data-rel-x="1500" data-rel-y="0">
+      <h1>Short introduction to Web Components</h1>
 
-<p>&nbsp;</p>
-<p>
-  Check out 
-  <a href="webcomponents.org">webcomponents.org</a>
-</p>
+      <p>Web Components are a set of browser features:</p>
+      <ul>
+        <li>
+          <p class="substep">Shadow DOM</p>
+        </li>
+        <li>
+          <p>Custom Elements</p>
+        </li>
+        <li>
+          <p>HTML templates</p>
+        </li>
+      </ul>
 
-</div>
+      <p>&nbsp;</p>
+      <p>
+        Check out
+        <a href="webcomponents.org">webcomponents.org</a>
+      </p>
+    </div>
 
-<div id="intro-shadow-dom1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-  <h1>What is Shadow DOM?</h1>
-  <h2>Element.attachShadow()</h2>
+    <div id="intro-shadow-dom-1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What is Shadow DOM?</h1>
+      <h2>Element.attachShadow()</h2>
 
-  <pre><code class="html">
+      <pre><code class="html">
 <div id="shadow-dom-example"></div>
+
 <script>
   const example = document.getElementById('shadow-dom-example');
-  const shadowRoot = example.attachShadow({mode: 'open'});
+  const shadowRoot = example.attachShadow({ mode: 'open' });
 
-  const button = document.createElement('button');
-  button.textContent = 'test';
-  shadowRoot.appendChild(button);
+  shadowRoot.innerHTML = `<button>test</button>`;
 </script>
   </code></pre>
 
-  <p>HTML result:</p>
-  <pre><code class="html">
+      <p>HTML result:</p>
+      <pre><code class="html">
 <div id="shadow-dom-example">
   #shadow-root
     <button>test</button>
 </div>
   </code></pre>
 
-  <p>result:</p>
-  <div id="shadow-dom-example0"></div>
-  <script>
-    (function () {
-      const example = document.getElementById('shadow-dom-example0');
-      const shadowRoot = example.attachShadow({mode: 'open'});
-    
-      const button = document.createElement('button');
-      button.textContent = 'test';
-      shadowRoot.appendChild(button);
-    })();
-  </script>
-
-</div>
-
-<div id="intro-shadow-dom2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-  <h1>What is Shadow DOM?</h1>
-
-  <div class="columns">
-
-    <div class="column">
-      <p>Shadow DOM</p>
-
-      <pre><code class="html">
-<div>
-  #shadow-root
-    <style>
-      .test {
-        color: green;
-      }
-    </style>
-    <button class="test">test</button>
-</div>
-<style>
-  .test {
-    color: red;
-  }
-</style>
-      </code></pre>
-
-      <p>result: </p>
-      <div id="shadow-dom-example1"></div>
+      <p>result:</p>
+      <div id="shadow-dom-example0"></div>
       <script>
         (function () {
-          const example = document.getElementById('shadow-dom-example1');
-          const shadowRoot = example.attachShadow({mode: 'open'});
-          const style = document.createElement('style');
-          style.textContent = `
-            .test {
-              color: green;
-            }
-            `;
-          shadowRoot.appendChild(style);
+          const example = document.getElementById('shadow-dom-example0');
+          const shadowRoot = example.attachShadow({ mode: 'open' });
 
-          const button = document.createElement('button');
-          button.textContent = 'test';
-          button.classList.add('test');
-          shadowRoot.appendChild(button);
+          shadowRoot.innerHTML = `
+            <!-- font-size not part of the demo, just for the sake of it being readable -->
+            <style>button { font-size: 30px; }</style>
+            <button>test</button>
+          `;
         })();
       </script>
-      <style>
-        .test {
-          color: red;
-        }
-      </style>
+
+      <div class="notes">
+        <p>Shadow Root</p>
+        <p>Element interface</p>
+        <ul>
+          <li>HTMLELement</li>
+          <li>SVGELement</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="column">
-      <p>No Shadow DOM</p>
+    <div id="intro-shadow-dom-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What is Shadow DOM?</h1>
 
-      <pre><code class="html">
+      <div class="columns">
+
+        <div class="column">
+          <p>No Shadow DOM</p>
+
+          <pre><code class="html">
 <div>
 
   <style>
@@ -230,6 +199,7 @@
   </style>
   <button class="test">test</button>
 </div>
+
 <style>
   .test {
     color: red;
@@ -237,288 +207,442 @@
 </style>
       </code></pre>
 
-      <p>result: </p>
-      <div id="shadow-dom-example2"></div>
-      <script>
-        (function () {
-          const example = document.getElementById('shadow-dom-example2');
-          const style = document.createElement('style');
-          style.textContent = `
+          <p>result:</p>
+          <div id="shadow-dom-example2"></div>
+          <script>
+            (function () {
+              const example = document.getElementById('shadow-dom-example2');
+
+              example.innerHTML = `
+            <style>
+              .test {
+                color: green;
+              }
+            </style>
+            <button class="test">
+              test
+            </button>
+          `;
+            })();
+          </script>
+          <style>
             .test {
-              color: green;
+              color: red;
             }
-            `;
-          example.appendChild(style);
 
-          const button = document.createElement('button');
-          button.textContent = 'test';
-          button.classList.add('test');
-          example.appendChild(button);
-        })();
-      </script>
-      <style>
-        .test {
-          color: red;
-        }
-      </style>
-    </div>
+          </style>
+        </div>
 
-  </div>
+        <div class="column">
+          <p>Shadow DOM</p>
+
+          <pre><code class="html">
+<div>
+  #shadow-root
+    <style>
+      .test {
+        color: green;
+      }
+    </style>
+    <button class="test">test</button>
 </div>
 
+<style>
+  .test {
+    color: red;
+  }
+</style>
+      </code></pre>
 
-<div id="intro-custom-elements" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-  <h1>What are Custom Elements?</h1>
-  <h2>customElements.define()</h2>
+          <p>result:</p>
+          <div id="shadow-dom-example1"></div>
+          <script>
+            (function () {
+              const example = document.getElementById('shadow-dom-example1');
+              const shadowRoot = example.attachShadow({ mode: 'open' });
 
-  
-  <!-- haven't found a way yet to add `<test-button></test-button>` without the component actually working -->
-  <!-- <img class="fake-test-button" src="images/fake-test-button.png"> -->
+              shadowRoot.innerHTML = `
+            <!-- font-size not part of the demo, just for the sake of it being readable -->
+            <style>button { font-size: 30px; }</style>
+            <style>
+              .test {
+                color: green;
+              }
+            </style>
+            <button class="test">
+              test
+            </button>
+          `;
+            })();
+          </script>
+          <style>
+            .test {
+              color: red;
+            }
 
-  <pre class="custom-elements-example"><code class="html">
-<test-button></test-button>
+          </style>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="intro-shadow-dom-3" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What is Shadow DOM?</h1>
+
+      <div class="columns">
+
+        <div class="column">
+          <p>Shadow DOM - enable CSS inheritance</p>
+
+          <pre><code class="html">
+<div class="super">
+  #shadow-root
+    <style>
+      .test {
+        color: unset;
+      }
+    </style>
+    <button class="test">test</button>
+</div>
+
+<style>
+  .super {
+    color: red;
+  }
+</style>
+      </code></pre>
+
+          <p>result:</p>
+          <div class="super" id="shadow-dom-enable"></div>
+          <script>
+            (function () {
+              const example = document.getElementById('shadow-dom-enable');
+              const shadowRoot = example.attachShadow({ mode: 'open' });
+
+              shadowRoot.innerHTML = `
+            <!-- font-size not part of the demo, just for the sake of it being readable -->
+            <style>button { font-size: 30px; }</style>
+            <style>
+              .test {
+                color: unset;
+              }
+            </style>
+            <button class="test">
+              test
+            </button>
+          `;
+            })();
+          </script>
+          <style>
+            .super {
+              color: red;
+            }
+
+          </style>
+        </div>
+
+        <div class="column">
+          <p>Shadow DOM - disable CSS inheritance</p>
+
+          <pre><code class="html">
+<div class="super">
+  #shadow-root
+    <style>
+      .test {
+        color: green;
+      }
+    </style>
+    <button class="test">test</button>
+</div>
+
+<style>
+  .super {
+    color: red;
+  }
+</style>
+      </code></pre>
+
+          <p>result:</p>
+          <div class="super" id="shadow-dom-disable"></div>
+          <script>
+            (function () {
+              const example = document.getElementById('shadow-dom-disable');
+              const shadowRoot = example.attachShadow({ mode: 'open' });
+
+              shadowRoot.innerHTML = `
+            <!-- font-size not part of the demo, just for the sake of it being readable -->
+            <style>button { font-size: 30px; }</style>
+            <style>
+              .test {
+                color: green;
+              }
+            </style>
+            <button class="test">
+              test
+            </button>
+          `;
+            })();
+          </script>
+          <style>
+            .super {
+              color: red;
+            }
+          </style>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="intro-shadow-dom-4" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What is Shadow DOM?</h1>
+
+      <div class="columns">
+        <div class="column">
+          <p>Shadow DOM - open</p>
+
+          <pre><code class="html">
+<div id="open"></div>
 <script>
-  class CustomElement extends HTMLElement {
-    constructor() {
-      super();
+  const open = document.createElement('p');
+  open.attachShadow({mode: 'open'});
+</script>
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      this.appendChild(shadowRoot);
+<script>
+  console.log(open.shadowRoot);
+  // ShadowRoot object
+</script>
+          </code></pre>
+        </div>
 
-      const button = document.createElement('button');
-      button.textContent = 'test';
-      shadowRoot.appendChild(button);
+        <div class="column">
+          <p>Shadow DOM - closed</p>
+
+          <pre><code class="html">
+<div id="closed"></div>
+<script>
+  const closed = document.getElementById('closed');
+  closed.attachShadow({mode: 'closed'});
+</script>
+
+<script>
+  console.log(closed.shadowRoot);
+  // null
+</script>
+          </code></pre>
+        </div>
+      </div>
+    </div>
+
+    <div id="intro-2" class="step slide" data-rel-x="1500" data-rel-y="-3000">
+      <h1>Short introduction to Web Components</h1>
+
+      <p>Web Components are a set of browser features:</p>
+      <ul>
+        <li>
+          <p>Shadow DOM</p>
+        </li>
+        <li>
+          <p><b>Custom Elements</b></p>
+        </li>
+        <li>
+          <p>HTML templates</p>
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <p>
+        Check out
+        <a href="webcomponents.org">webcomponents.org</a>
+      </p>
+    </div>
+
+    <div id="intro-custom-elements" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What are Custom Elements?</h1>
+      <h2>customElements.define()</h2>
+
+      <img class="custom-button-image" src="./images/custom-button.png" />
+      <pre class="custom-elements-example"><code class="html">
+
+
+<script>
+  class CustomButtonElement extends HTMLElement {
+    connectedCallback() {
+      this.innerHTML = `<button>test</button>`;
     }
   }
-  customElements.define('test-button', CustomElement);
+  customElements.define('custom-button', CustomButtonElement);
 </script>
   </code></pre>
 
-  <div class="custom-elements-example-result">
-    <div>
-      <p>HTML result:</p>
-      <pre><code class="html">
-  <test-button>
-    #shadow-root
-    <button>test</button>
-  </test-button>
-      </code></pre>
+      <div class="custom-elements-example-result">
+        <div class="custom-button-html-result">
+          <p>HTML result:</p>
+          <pre><code class="html" id="html-result">
+      <custom-button></custom-button>
+          </code></pre>
+        </div>
+
+        <div>
+          <p>result:</p>
+          <custom-button></custom-button>
+        </div>
+      </div>
     </div>
 
-    <div>
-      <p>result:</p>
-      <test-button></test-button>
+    <div id="intro-3" class="step slide" data-rel-x="1500" data-rel-y="-1000">
+      <h1>Short introduction to Web Components</h1>
+
+      <p>Web Components are a set of browser features:</p>
+      <ul>
+        <li>
+          <p>Shadow DOM</p>
+        </li>
+        <li>
+          <p>Custom Elements</p>
+        </li>
+        <li>
+          <p><b>HTML templates</b></p>
+        </li>
+      </ul>
+
+      <p>&nbsp;</p>
+      <p>
+        Check out
+        <a href="webcomponents.org">webcomponents.org</a>
+      </p>
     </div>
-  </div>
-</div>
+
+    <div id="intro-html-templates-1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What are HTML templates?</h1>
+      <h2>&lt;template> &amp; &lt;slot></h2>
 
 
-<div id="intro-html-templates-attempt-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-  <h1>What are HTML templates?</h1>
-  <h2>&lt;template> &amp; &lt;slot></h2>
-
-  
-  <pre class="custom-elements-example"><code>
-<template id="template">
-  <button>
-    <slot name="content">test</slot>
-  </button>
-</template>
-<web-component></web-component>
-<web-component>
-  <span slot="content">not test</span>
-</web-component>
+      <pre class="custom-elements-example"><code>
 <script>
   class WebComponent extends HTMLElement {
     constructor() {
       super();
 
-      const shadowRoot = this.attachShadow({mode: 'open'});
-      const template = document.createElement('template');
-      shadowRoot.appendChild(button);
-
-      const button = document.createElement('button');
-      shadowRoot.appendChild(button);
-
-      const slot = document.createElement('slot');
-      slot.textContent = 'test';
-      button.appendChild(slot);
+      const shadowRoot = this.attachShadow({ mode: 'open' });
+      shadowRoot.innerHTML = `
+        <button>
+          <slot name="content">test</slot>
+        </button>
+      `;
     }
   }
-  customElements.define('web-component', WebComponent);
+  customElements.define('enhanced-test-button', WebComponent);
 </script>
-    </code></pre>
-
-    <!-- TODO REMOVE -->
-  <web-component></web-component>
-  <web-component>
-    <span slot="content">not test</span>
-  </web-component>
-  <!-- TODO REMOVE END -->
-
-
-    <p>HTML result:</p>
-    
-  <pre><code>
-<web-component>
-  <button>test</button>
-</web-component>
-<web-component>
-  <button><span slot="content">not test</span></button>
-</web-component>
   </code></pre>
 
-    <p>result:</p>
-  <web-component></web-component>
-  <web-component>
-    <span slot="content">not test</span>
-  </web-component>
-</div>
-
-<div id="intro-html-templates" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-    <h1>What are HTML templates?</h1>
-    <h2>&lt;template> &amp; &lt;slot></h2>
-  
-    
-    <pre class="custom-elements-example"><code>
-  <template id="template">
-    <button>
-      <slot name="content">test</slot>
-    </button>
-  </template>
-  <web-component></web-component>
-  <web-component>
-    <span slot="content">not test</span>
-  </web-component>
-  <script>
-    // class WebComponent extends HTMLElement {
-    //   constructor() {
-    //     super();
-  
-    //     const template = document.getElementById('template');
-    //     const templateContent = template.content;
-  
-    //     const shadowRoot = this.attachShadow({mode: 'open'});
-    //     shadowRoot.appendChild(templateContent.cloneNode(true));
-    //   }
-    // }
-    // customElements.define('web-component', WebComponent);
-  </script>
+      <div class="custom-elements-example-result">
+        <div>
+          <pre><code class="html">
+<enhanced-test-button></enhanced-test-button>
       </code></pre>
-  
-      <p>HTML result:</p>
-      
-    <pre><code>
-  <web-component>
-    <button>test</button>
-  </web-component>
-  <web-component>
-    <button><span slot="content">not test</span></button>
-  </web-component>
-    </code></pre>
-  
-      <p>result:</p>
-    <web-component></web-component>
-    <web-component>
-      <span slot="content">not test</span>
-    </web-component>
-  </div>
+          <pre><code class="html">
+<enhanced-test-button>
+  <span slot="content">not test</span>
+</enhanced-test-button>
+      </code></pre>
+        </div>
 
-<div id="support" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
-  <h1>Web Components support</h1>
+        <div>
+          <enhanced-test-button></enhanced-test-button>
+          <enhanced-test-button>
+            <span slot="content">not test</span>
+          </enhanced-test-button>
+        </div>
+      </div>
+    </div>
 
-  <ul>
-    <li>
-      <p>Shadow DOM v1</p>
-      <can-i-use
-        type="shadowdomv1"
-        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
-      ></can-i-use>
-      <can-i-use-total type="shadowdomv1"></can-i-use-total>
-    </li>
-    <li>
-      <p>Custom Elements v1</p>
-      <can-i-use
-        type="custom-elementsv1"
-        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
-      ></can-i-use>
-      <can-i-use-total type="custom-elementsv1"></can-i-use-total>
-    </li>
-    <li>
-      <p>HTML templates</p>
-      <can-i-use
-        type="template"
-        browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"
-      ></can-i-use>
-      <can-i-use-total type="template"></can-i-use-total>
-    </li>
-  </ul>
-  <p>data from <a href="caniuse.com">caniuse.com</a></p>
-</div>
+    <div id="support" class="step large-step slide" data-rel-x="1500" data-rel-y="-1000">
+      <h1>Web Components support</h1>
 
-<div id="mmeslekm" class="step slide markdown" data-rel-x="0" data-rel-y="1000">
-# Markdown.js
+      <ul>
+        <li>
+          <p>Shadow DOM v1</p>
+          <can-i-use type="shadowdomv1" browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"></can-i-use>
+          <can-i-use-total type="shadowdomv1"></can-i-use-total>
+        </li>
+        <li>
+          <p>Custom Elements v1</p>
+          <can-i-use type="custom-elementsv1" browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"></can-i-use>
+          <can-i-use-total type="custom-elementsv1"></can-i-use-total>
+        </li>
+        <li>
+          <p>HTML templates</p>
+          <can-i-use type="template" browsers="['firefox', 'chrome', 'edge' , 'safari', 'ie']"></can-i-use>
+          <can-i-use-total type="template"></can-i-use-total>
+        </li>
+      </ul>
+      <p>data from <a href="caniuse.com">caniuse.com</a></p>
+    </div>
 
-* Provided by [Markdown.js](https://github.com/evilstreak/markdown-js) in [extras/](https://github.com/impress/impress.js/tree/master/extras)
-* Jot down your bullet points in *Markdown* & have it automatically converted to HTML
-* Note: The Markdown is converted into a presentation client side, in the browser. This is unlike
-  existing tools like [Hovercraft](https://github.com/regebro/hovercraft) and 
-  markdown-impress where you generate a new
-  html file on the command line.
-* This combines the ease of typing Markdown with the full power of impress.js HTML5+CSS3+JavaScript!
+    <div id="mmeslekm" class="step slide markdown" data-rel-x="1500" data-rel-y="0">
+      # Markdown.js
 
------
-# Styles
+      * Provided by [Markdown.js](https://github.com/evilstreak/markdown-js) in
+      [extras/](https://github.com/impress/impress.js/tree/master/extras)
+      * Jot down your bullet points in *Markdown* & have it automatically converted to HTML
+      * Note: The Markdown is converted into a presentation client side, in the browser. This is unlike
+      existing tools like [Hovercraft](https://github.com/regebro/hovercraft) and
+      markdown-impress where you generate a new
+      html file on the command line.
+      * This combines the ease of typing Markdown with the full power of impress.js HTML5+CSS3+JavaScript!
 
-* You can use *italics* & **bold**
-* ...and `code`
+      -----
+      # Styles
+
+      * You can use *italics* & **bold**
+      * ...and `code`
 
 
------
-# A blockquote &amp; image
+      -----
+      # A blockquote &amp; image
 
-<!-- ![Mother Teresa holding a newborn baby](images/3476636111_c551295ca4_b.jpg) -->
+      <!-- ![Mother Teresa holding a newborn baby](images/3476636111_c551295ca4_b.jpg) -->
 
-> Spread love everywhere you go.
-> Let no one ever come to you without leaving happier.
+      > Spread love everywhere you go.
+      > Let no one ever come to you without leaving happier.
 
-*-- Mother Teresa*
+      *-- Mother Teresa*
 
-Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476636111/)@Flickr. CC-BY 2.0
+      Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476636111/)@Flickr. CC-BY 2.0
 
------
-# Code
+      -----
+      # Code
 
-When also using [Highlight.js](https://highlightjs.org/) integration, code blocks in Markdown
-are converted to HTML first, then colored by Highlight.js:
+      When also using [Highlight.js](https://highlightjs.org/) integration, code blocks in Markdown
+      are converted to HTML first, then colored by Highlight.js:
 
-        // `init` API function that initializes (and runs) the presentation.
-        var init = function () {
-            if (initialized) { return; }
-            execPreInitPlugins();
-            
-            // First we set up the viewport for mobile devices.
-            // For some reason iPad goes nuts when it is not done properly.
-            var meta = $("meta[name='viewport']") || document.createElement("meta");
-            meta.content = "width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no";
-            if (meta.parentNode !== document.head) {
-                meta.name = 'viewport';
-                document.head.appendChild(meta);
-            }        
+      // `init` API function that initializes (and runs) the presentation.
+      var init = function () {
+      if (initialized) { return; }
+      execPreInitPlugins();
 
------
+      // First we set up the viewport for mobile devices.
+      // For some reason iPad goes nuts when it is not done properly.
+      var meta = $("meta[name='viewport']") || document.createElement("meta");
+      meta.content = "width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no";
+      if (meta.parentNode !== document.head) {
+      meta.name = 'viewport';
+      document.head.appendChild(meta);
+      }
 
-# Slide separator
+      -----
 
-* 5 dashes are used to separate slides:
+      # Slide separator
 
-`-----`
+      * 5 dashes are used to separate slides:
 
-* Attributes from `div.step` element are simply repeated.
-  * Better use relative positioning, lest your slides will all be on top of each other.
-* If you need to set some attributes, just use HTML and create a div element, then write 
-  Markdown inside each div.
-</div>
+      `-----`
+
+      * Attributes from `div.step` element are simply repeated.
+      * Better use relative positioning, lest your slides will all be on top of each other.
+      * If you need to set some attributes, just use HTML and create a div element, then write
+      Markdown inside each div.
+    </div>
 
 
     <!--
@@ -536,29 +660,30 @@ are converted to HTML first, then colored by Highlight.js:
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
         
     -->
-    <div id="overview" class="step" data-x="450" data-y="1500" data-z="0" data-scale="5">
+    <div id="overview" class="step" data-x="3000" data-y="1600" data-z="0" data-scale="5">
     </div>
 
-</div>
+  </div>
 
-<button id="overview-button">overview</button>
+  <button id="overview-button">overview</button>
 
-<div class="impress-progressbar"><div></div></div>
-<!--
+  <div class="impress-progressbar">
+    <div></div>
+  </div>
+  <!--
     This is a UI plugin. You can read more about plugins in src/plugins/README.md.
     For now, I'll just tell you that this adds some graphical controls to navigate the
     presentation. In the CSS file you can style them as you want. We've put them bottom right.
 -->
-<!-- <div id="impress-toolbar"></div> -->
+  <!-- <div id="impress-toolbar"></div> -->
 
 
-<!-- Extra modules
+  <!-- Extra modules
      Load highlight.js, mermaid.js, markdown.js and MathJax.js from extras.
      If you're curious about details, these are initialized in src/plugins/extras/extras.js -->
-  <script type="text/javascript" src="./extras/highlight/highlight.pack.js"></script>
   <script type="text/javascript" src="./extras/mermaid/mermaid.min.js"></script>
   <script type="text/javascript" src="./extras/markdown/markdown.js"></script>
-<!--
+  <!--
     
     Last, but not least.
     
@@ -573,16 +698,16 @@ are converted to HTML first, then colored by Highlight.js:
     Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
     
 -->
-<script src="js/impress.js"></script>
-<script>impress().init();</script>
+  <script src="js/impress.js"></script>
+  <script>impress().init();</script>
 
-<script>
-  document.getElementById('overview-button').addEventListener('click', ()=>{
-    impress().goto('overview')
-  });
-</script>
+  <script>
+    document.getElementById('overview-button').addEventListener('click', () => {
+      impress().goto('overview')
+    });
+  </script>
 
-<!--
+  <!--
     
     The `impress()` function also gives you access to the API that controls the presentation.
     
@@ -607,14 +732,15 @@ are converted to HTML first, then colored by Highlight.js:
     
 -->
 
-<!-- hacky solution for html code blocks -->
-<script>
-  document.querySelectorAll("code").forEach(function(element) {
-    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-  });
-</script>
+  <!-- hacky solution for html code blocks -->
+  <script>
+    document.querySelectorAll("code").forEach(function (element) {
+      element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    });
+  </script>
 
 </body>
+
 </html>
 
 <!--

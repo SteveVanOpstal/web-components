@@ -11,9 +11,22 @@ h1, h2, h3, p, pre {
   margin: 0;
 }
 
+p {
+  margin-top: 1.5rem;
+}
+
 pre {
-  font-size: 22px;
-  line-height: 1.2;
+  font-size: 26px;
+  line-height: 1;
+  margin-top: 0.5rem;
+}
+
+button {
+  font-size: 30px;
+}
+
+code {
+  overflow: hidden;
 }
 
 .columns {
@@ -35,12 +48,6 @@ pre {
   margin-bottom: 0;
 }
 
-.fake-test-button {
-  position: absolute;
-  top: 110px;
-  left: 14px;
-}
-
 .custom-elements-example-result {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -60,7 +67,7 @@ pre {
 
 .step {
   position: relative;
-  width: 1000px;
+  min-width: 1000px;
   height: 800px;
   padding: 90px 110px;
 
@@ -73,6 +80,10 @@ pre {
   line-height: 1.5;
 }
 
+.step .notes {
+  display: none;
+}
+
 .small-step {
   padding: 90px 190px;
 }
@@ -82,11 +93,40 @@ pre {
   margin: 0 auto;
 }
 
+.substep {
+  font-weight: normal;
+}
+.substep.substep-visible {
+  font-weight: bold;
+  transition: opacity 1s;
+}
+
+can-i-use {
+  display: block;
+  width: 1200px;
+}
+
 #overview {
   width: 0;
   height: 0;
   margin: 0;
   padding: 0;
+}
+
+.custom-button-image {
+  position: absolute;
+  z-index: 5;
+  margin-top: 1.2rem;
+}
+
+.custom-button-html-result .hljs-tag:nth-of-type(1),
+.custom-button-html-result .hljs-tag:nth-of-type(4) {
+  display: block;
+}
+
+.custom-button-html-result .hljs-tag:nth-of-type(2) {
+  display: inline;
+  margin-left: 30px;
 }
 
 

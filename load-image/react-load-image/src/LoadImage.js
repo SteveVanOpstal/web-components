@@ -35,7 +35,7 @@ class LoadImage extends React.Component {
     return (
       <div class={styles['load-image']}>
         <Thumb src={this.props.srcThumb} alt={this.props.alt} className="thumb" ready={this.state.ready}></Thumb>
-        <Image src={this.props.src} alt={this.props.alt} onLoad={() => this.setState({ ready: true })}></Image>
+        <Image src={this.props.src} alt={this.props.alt} onLoad={() => this.setState({ ready: true })} loading="lazy"></Image>
       </div>
     );
   }

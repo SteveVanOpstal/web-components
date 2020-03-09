@@ -3,6 +3,7 @@ const fs = require('fs');
 const app = express();
 const Jimp = require('jimp');
 var cache = require('express-cache-headers');
+var webp = require('webp-middleware');
 
 const thumbs = [];
 
@@ -30,16 +31,15 @@ fs.readdir('assets', (err, filenames) => {
   }
 });
 
+app.use('/assets', webp(__dirname, {}));
+app.use('/favicon.png', webp(__dirname, {}));
+app.use(express.static(__dirname));
 app.use(cache(1440));
 
 app.get('/thumbs/*', (req, res) => {
   const thumb = thumbs.find(t => req.url.indexOf(t.name) > -1);
   res.contentType('jpeg');
   res.end(thumb.data, 'binary');
-});
-
-app.all('*', (req, res) => {
-  res.sendFile(__dirname + '/' + req.url);
 });
 
 const port = 3200;

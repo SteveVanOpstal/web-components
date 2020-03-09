@@ -54,3 +54,6 @@ Thumbs.db
 /slides/.brackets.json
 /slides/examples
 /slides/test
+
+# webp-middleware
+/webp-cache

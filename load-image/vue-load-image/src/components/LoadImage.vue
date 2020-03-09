@@ -1,7 +1,7 @@
 <template>
   <div class="root" :ready="ready">
     <img :src="srcThumb" :alt="alt" class="thumb" />
-    <img :src="src" :alt="alt" @load="ready = true" />
+    <img :src="src" :alt="alt" @load="ready = true" loading="lazy" />
   </div>
 </template>
 
