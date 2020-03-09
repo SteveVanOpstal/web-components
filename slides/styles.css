@@ -54,12 +54,20 @@ code {
   grid-gap: 1rem;
 }
 
+slotted-button,
+template-button {
+  display: inline-block;
+  padding-top: 1rem;
+}
+
 #overview-button {
   background: none;
   border: none;
+  color: transparent;
 }
 
 #overview-button:hover {
+  color: black;
   background: #ccc;
   cursor: pointer;
 }

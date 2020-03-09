@@ -2,8 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const Jimp = require('jimp');
-var cache = require('express-cache-headers');
-var webp = require('webp-middleware');
+const cache = require('express-cache-headers');
+const compression = require('compression');
 
 const thumbs = [];
 
@@ -31,8 +31,7 @@ fs.readdir('assets', (err, filenames) => {
   }
 });
 
-app.use('/assets', webp(__dirname, {}));
-app.use('/favicon.png', webp(__dirname, {}));
+app.use(compression());
 app.use(express.static(__dirname));
 app.use(cache(1440));
 

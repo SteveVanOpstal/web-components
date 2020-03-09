@@ -129,13 +129,13 @@
       <p>&nbsp;</p>
       <p>
         Check out
-        <a href="webcomponents.org">webcomponents.org</a>
+        <a href="https://www.webcomponents.org/">webcomponents.org</a>
       </p>
     </div>
 
     <div id="intro-shadow-dom-1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What is Shadow DOM?</h1>
-      <h2>Element.attachShadow()</h2>
+      <h3>Element.attachShadow()</h3>
 
       <pre><code class="html">
 <div id="shadow-dom-example"></div>
@@ -288,11 +288,12 @@
 
     <div id="intro-shadow-dom-3" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What is Shadow DOM?</h1>
+      <h3>Inheritance</h3>
 
       <div class="columns">
 
         <div class="column">
-          <p>Shadow DOM - enable CSS inheritance</p>
+          <p>Enable CSS inheritance</p>
 
           <pre><code class="html">
 <div class="super">
@@ -342,7 +343,7 @@
         </div>
 
         <div class="column">
-          <p>Shadow DOM - disable CSS inheritance</p>
+          <p>Disable CSS inheritance</p>
 
           <pre><code class="html">
 <div class="super">
@@ -395,10 +396,11 @@
 
     <div id="intro-shadow-dom-4" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What is Shadow DOM?</h1>
+      <h3>Mode</h3>
 
       <div class="columns">
         <div class="column">
-          <p>Shadow DOM - open</p>
+          <p>open</p>
 
           <pre><code class="html">
 <div id="open"></div>
@@ -415,7 +417,7 @@
         </div>
 
         <div class="column">
-          <p>Shadow DOM - closed</p>
+          <p>closed</p>
 
           <pre><code class="html">
 <div id="closed"></div>
@@ -433,7 +435,7 @@
       </div>
     </div>
 
-    <div id="intro-2" class="step slide" data-rel-x="1500" data-rel-y="-3000">
+    <div id="intro-2" class="step slide" data-rel-x="1500" data-rel-y="-4000">
       <h1>Short introduction to Web Components</h1>
 
       <p>Web Components are a set of browser features:</p>
@@ -452,7 +454,7 @@
       <p>&nbsp;</p>
       <p>
         Check out
-        <a href="webcomponents.org">webcomponents.org</a>
+        <a href="https://www.webcomponents.org/">webcomponents.org</a>
       </p>
     </div>
 
@@ -508,18 +510,95 @@
       <p>&nbsp;</p>
       <p>
         Check out
-        <a href="webcomponents.org">webcomponents.org</a>
+        <a href="https://www.webcomponents.org/">webcomponents.org</a>
       </p>
     </div>
 
     <div id="intro-html-templates-1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What are HTML templates?</h1>
-      <h2>&lt;template> &amp; &lt;slot></h2>
+      <h2>&lt;template></h2>
+
+      <template id="template-id1">
+        <style>button {font-size: unset }</style>
+        <button>test</button>
+      </template>
+
+      <script>
+        // defined twice. for the sake of the font-size not being in the example code.
+        // an error will occur: `Uncaught SyntaxError: Identifier 'TemplateButton' has already been declared`.
+        // it's for the greater good.
+        class TemplateButton extends HTMLElement {
+          constructor() {
+            super();
+
+            const template = document.getElementById('template-id1');
+            const shadowRoot = this.attachShadow({mode: 'open'});
+            shadowRoot.appendChild(template.content.cloneNode(true));
+          }
+        }
+        customElements.define('template-button', TemplateButton);
+      </script>
+
+      <pre class="custom-elements-example"><code>
+<template id="template-id">
+  <button>test</button>
+</template>
+
+<template-button></template-button>
+
+<script>
+  class TemplateButton extends HTMLElement {
+    constructor() {
+      super();
+
+      const template = document.getElementById('template-id');
+      const shadowRoot = this.attachShadow({mode: 'open'});
+      shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+  }
+  customElements.define('template-button', TemplateButton);
+</script>
+  </code></pre>
+
+      <div>
+        <template-button></template-button>
+      </div>
+    </div>
+
+    <div id="intro-html-templates-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What are HTML templates?</h1>
+      <h2>&lt;slot></h2>
+
+      <script>
+        // defined twice. for the sake of the font-size not being in the example code.
+        // an error will occur: `Uncaught SyntaxError: Identifier 'SlottedButton' has already been declared`.
+        // it's for the greater good.
+        class SlottedButton extends HTMLElement {
+          constructor() {
+            super();
+      
+            const shadowRoot = this.attachShadow({ mode: 'open' });
+            shadowRoot.innerHTML = `
+              <style>button {font-size: unset }</style>
+              <button>
+                <slot name="content">test</slot>
+              </button>
+            `;
+          }
+        }
+        customElements.define('slotted-button', SlottedButton);
+      </script>
 
 
       <pre class="custom-elements-example"><code>
+<slotted-button></slotted-button>
+
+<slotted-button>
+  <span slot="content">not a test</span>
+</slotted-button>
+
 <script>
-  class WebComponent extends HTMLElement {
+  class SlottedButton extends HTMLElement {
     constructor() {
       super();
 
@@ -531,28 +610,15 @@
       `;
     }
   }
-  customElements.define('enhanced-test-button', WebComponent);
+  customElements.define('slotted-button', SlottedButton);
 </script>
   </code></pre>
 
-      <div class="custom-elements-example-result">
-        <div>
-          <pre><code class="html">
-<enhanced-test-button></enhanced-test-button>
-      </code></pre>
-          <pre><code class="html">
-<enhanced-test-button>
-  <span slot="content">not test</span>
-</enhanced-test-button>
-      </code></pre>
-        </div>
-
-        <div>
-          <enhanced-test-button></enhanced-test-button>
-          <enhanced-test-button>
-            <span slot="content">not test</span>
-          </enhanced-test-button>
-        </div>
+      <div>
+        <slotted-button></slotted-button>
+        <slotted-button>
+          <span slot="content">not a test</span>
+        </slotted-button>
       </div>
     </div>
 
