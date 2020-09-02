@@ -11,23 +11,8 @@ class JavascriptLoadImage extends HTMLElement {
     style.textContent = `
       :host {
         display: block;
-        position: relative;
-        border: 5px solid #f7e018;
         width: 400px;
         height: 300px;
-        margin: auto;
-      }
-
-      :host::before {
-        content: '';
-        position: absolute;
-        background-image: url("http://localhost:3200/assets/icons/javascript.svg");
-        background-repeat: no-repeat;
-        top: 10px;
-        left: 10px;
-        height: 100px;
-        width: 100px;
-        z-index: 1;
       }
 
       :host([ready]) > img.thumb {

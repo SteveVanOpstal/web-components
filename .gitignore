@@ -45,15 +45,15 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# slides
-/slides/js/impress.min.js.map
-/slides/js/impress.min.js
-/slides/node_modules
-/slides/npm-debug.log
-/slides/*.tgz
-/slides/.brackets.json
-/slides/examples
-/slides/test
+# docs
+/docs/js/impress.min.js.map
+/docs/js/impress.min.js
+/docs/node_modules
+/docs/npm-debug.log
+/docs/*.tgz
+/docs/.brackets.json
+/docs/examples
+/docs/test
 
 # webp-middleware
 /webp-cache

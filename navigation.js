@@ -1,5 +1,9 @@
 const ROUTES = [
   {
+    path: '/defer/index.html',
+    label: 'Defer',
+  },
+  {
     path: '/load-image',
     label: 'Load image',
     routes: [
@@ -61,11 +65,16 @@ customElements.define('web-components-navigation',
 
       const style = document.createElement('style');
       style.textContent = `
+        :host {
+          display: block;
+          padding-bottom: 20px;
+        }
+
         nav {
           display: flex;
           justify-content: space-around;
           margin: 0 auto;
-          width: 500px;
+          width: 600px;
           font-size: 30px;
         }`;
 

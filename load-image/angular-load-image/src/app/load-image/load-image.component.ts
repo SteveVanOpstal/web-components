@@ -4,7 +4,6 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  ViewEncapsulation,
 } from '@angular/core';
 
 @Component({
@@ -12,8 +11,7 @@ import {
   template: `
     <img [src]="srcThumb" [alt]="alt" class="thumb"/>
     <img [src]="src" [alt]="alt" (load)="ready = true" loading="lazy"/>`,
-  styleUrls: ['load-image.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['load-image.component.scss']
 })
 export class LoadImageComponent implements OnChanges {
   @Input() src: string;

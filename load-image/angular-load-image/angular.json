@@ -20,7 +20,7 @@
             "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.web-component.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
@@ -34,47 +34,17 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
-                }
-              ]
-            },
-            "web-component": {
               "budgets": [
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
               ],
-              "main": "src/main.web-component.ts",
               "optimization": true,
               "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true

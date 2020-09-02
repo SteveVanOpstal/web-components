@@ -5,7 +5,7 @@
     "types": []
   },
   "files": [
-    "main.web-component.ts",
+    "main.ts",
     "polyfills.ts"
   ],
   "include": [

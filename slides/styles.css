@@ -29,6 +29,11 @@ code {
   overflow: hidden;
 }
 
+pre > code {
+  font-family: Consolas, 'Courier New', monospace;
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
 .columns {
   display: flex;
 }
@@ -55,7 +60,9 @@ code {
 }
 
 slotted-button,
-template-button {
+template-button,
+custom-button,
+custom-text-button {
   display: inline-block;
   padding-top: 1rem;
 }
@@ -111,7 +118,12 @@ template-button {
 
 can-i-use {
   display: block;
-  width: 1200px;
+  font-size: 24px;
+}
+
+can-i-use-total {
+  display: block;
+  margin: 0.25em;
 }
 
 #overview {
@@ -137,6 +149,40 @@ can-i-use {
   margin-left: 30px;
 }
 
+.why-are-web-components-awesome > ul > li {
+  margin-bottom: 40px;
+}
+
+.expose-type {
+  display: inline-block;
+  width: 200px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  margin: 100px;
+}
+
+img {
+  max-width: 1100px;
+}
+
+.spacing {
+  display: block;
+  margin-top: 2rem;
+}
+
+.ref {
+  display: block;
+  margin: 400px 0 0 auto;
+}
+
+.left {
+  display: block;
+  margin: 100px 0;
+}
+
 
 /***** Fallback message *****/
 
@@ -160,6 +206,10 @@ can-i-use {
 
 .impress-supported .fallback-message {
   display: none;
+}
+
+.inline {
+  display: inline;
 }
 
 

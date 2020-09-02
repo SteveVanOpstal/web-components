@@ -13,7 +13,7 @@
     "@jimp/jpeg": "^0.6.0",
     "@jimp/plugin-blur": "^0.6.0",
     "@webcomponents/webcomponentsjs": "^2.3.0",
-    "caniuse-web-component": "^2.0.0",
+    "caniuse-web-component": "^2.1.1",
     "compression": "^1.7.4",
     "express": "^4.16.4",
     "express-cache-headers": "^0.1.4",
@@ -21,6 +21,6 @@
     "webp-middleware": "^0.4.0"
   },
   "devDependencies": {
-    "lerna": "^3.18.1"
+    "lerna": "^3.20.2"
   }
 }

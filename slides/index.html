@@ -25,10 +25,10 @@
         
     -->
   <!-- <link href="css/impress-demo.css" rel="stylesheet" /> -->
-  <script type="text/javascript" src="./extras/highlight/highlight.pack.js"></script>
+  <script src="./extras/highlight/highlight.pack.js"></script>
   <link rel="stylesheet" href="./extras/highlight/styles/github.css">
-  <link rel="stylesheet" href="./styles.css">
   <!-- <link href="./examples/markdown/css/markdown-slides.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="./styles.css">
   <!-- <link href="css/devopsy.css" rel="stylesheet" />
     <link href="css/effects.css" rel="stylesheet" />
      -->
@@ -36,7 +36,8 @@
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
   <!-- caniuse embed -->
-  <script src="../node_modules/caniuse-web-component/public/can-i-use.js"></script>
+  <script defer src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../node_modules/caniuse-web-component/can-i-use.js"></script>
 
   <!-- font-size not part of the demo, just for the sake of it being readable -->
   <style>button { font-size: 30px; }</style>
@@ -110,7 +111,38 @@
 
     </div>
 
-    <div id="intro-1" class="step slide" data-rel-x="1500" data-rel-y="0">
+    <div id="web-components-vs-frameworks" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>Components in Frameworks</h1>
+
+      <ul>
+        <li>
+          <span class="spacing">CSS and HTML Encapsulation</span>
+          <ul>
+            <li><span class="expose-type">Angular</span>-> ViewEncapsulation</li>
+            <li><span class="expose-type">Vue</span>-> scoped CSS</li>
+            <li><span class="expose-type">React</span>-> styled-components</li>
+          </ul>
+        </li>
+        <li>
+          <span class="spacing">Custom HTML tags (<pre class="inline html"><code class="inline"><hello-world></hello-world></code></pre>)</span>
+          <ul>
+            <li><span class="expose-type">Angular</span>-> selector</li>
+            <li><span class="expose-type">Vue</span>-> class name</li>
+            <li><span class="expose-type">React</span>-> class name</li>
+          </ul>
+        </li>
+        <li>
+          <span class="spacing">Content projection</span>
+          <ul>
+            <li><span class="expose-type">Angular</span>-> <pre class="inline html"><code class="inline"><ng-content></ng-content></code></pre></li>
+            <li><span class="expose-type">Vue</span>-> <pre class="inline html"><code class="inline"><slot></slot></code></pre></li>
+            <li><span class="expose-type">React</span>-> <pre class="inline html"><code class="inline">{props.children}</code></pre></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div id="intro-1" class="step slide" data-rel-x="1500" data-rel-y="-1000">
       <h1>Short introduction to Web Components</h1>
 
       <p>Web Components are a set of browser features:</p>
@@ -460,7 +492,7 @@
 
     <div id="intro-custom-elements" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What are Custom Elements?</h1>
-      <h2>customElements.define()</h2>
+      <h3>customElements.define()</h3>
 
       <img class="custom-button-image" src="./images/custom-button.png" />
       <pre class="custom-elements-example"><code class="html">
@@ -480,8 +512,8 @@
         <div class="custom-button-html-result">
           <p>HTML result:</p>
           <pre><code class="html" id="html-result">
-      <custom-button></custom-button>
-          </code></pre>
+<custom-button></custom-button>
+</code></pre>
         </div>
 
         <div>
@@ -491,7 +523,71 @@
       </div>
     </div>
 
-    <div id="intro-3" class="step slide" data-rel-x="1500" data-rel-y="-1000">
+    <div id="intro-custom-elements-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>What are Custom Elements?</h1>
+      <h3>input</h3>
+
+      <script>
+        class CustomTextButtonElement extends HTMLElement {
+          button = document.createElement('button');
+          style = document.createElement('style');
+          constructor() {
+            super();
+            this.style.innerHTML = `button { font-size: 30px; }`;
+            const shadowDom = this.attachShadow({mode: 'open'});
+            shadowDom.appendChild(this.style);
+            shadowDom.appendChild(this.button);
+          }
+      
+          static get observedAttributes() { return ['text']; }
+      
+          attributeChangedCallback(_name, _oldValue, newValue) {
+            this.button.innerText = newValue;
+          }
+        }
+        customElements.define('custom-text-button', CustomTextButtonElement);
+      </script>
+
+      <img class="custom-button-image" src="./images/custom-text-button.png" />
+      <pre class="custom-elements-example"><code class="html">
+
+
+<script>
+  class CustomTextButtonElement extends HTMLElement {
+    button = document.createElement('button');
+    constructor() {
+      super();
+      this.attachShadow({mode: 'open'}).appendChild(this.button);
+    }
+
+    static get observedAttributes() { return ['text']; }
+
+    attributeChangedCallback(_name, _oldValue, newValue) {
+      this.button.innerText = newValue;
+    }
+  }
+  customElements.define('custom-text-button', CustomTextButtonElement);
+</script>
+  </code></pre>
+
+      <div class="custom-elements-example-result">
+        <div class="custom-button-html-result">
+          <p>HTML result:</p>
+          <pre><code class="html" id="html-result">
+<custom-text-button text="not a test">  #shadow-root
+  <button>not a test</button>
+</custom-text-button>
+</code></pre>
+        </div>
+
+        <div>
+          <p>result:</p>
+          <custom-text-button text="not a test"></custom-text-button>
+        </div>
+      </div>
+    </div>
+
+    <div id="intro-3" class="step slide" data-rel-x="1500" data-rel-y="-2000">
       <h1>Short introduction to Web Components</h1>
 
       <p>Web Components are a set of browser features:</p>
@@ -516,7 +612,7 @@
 
     <div id="intro-html-templates-1" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What are HTML templates?</h1>
-      <h2>&lt;template></h2>
+      <h3>&lt;template></h3>
 
       <template id="template-id1">
         <style>button {font-size: unset }</style>
@@ -567,7 +663,7 @@
 
     <div id="intro-html-templates-2" class="step large-step slide" data-rel-x="0" data-rel-y="1000">
       <h1>What are HTML templates?</h1>
-      <h2>&lt;slot></h2>
+      <h3>&lt;slot></h3>
 
       <script>
         // defined twice. for the sake of the font-size not being in the example code.
@@ -581,7 +677,7 @@
             shadowRoot.innerHTML = `
               <style>button {font-size: unset }</style>
               <button>
-                <slot name="content">test</slot>
+                <slot>test</slot>
               </button>
             `;
           }
@@ -594,7 +690,7 @@
 <slotted-button></slotted-button>
 
 <slotted-button>
-  <span slot="content">not a test</span>
+  not a test
 </slotted-button>
 
 <script>
@@ -605,7 +701,7 @@
       const shadowRoot = this.attachShadow({ mode: 'open' });
       shadowRoot.innerHTML = `
         <button>
-          <slot name="content">test</slot>
+          <slot>test</slot>
         </button>
       `;
     }
@@ -617,13 +713,111 @@
       <div>
         <slotted-button></slotted-button>
         <slotted-button>
-          <span slot="content">not a test</span>
+          not a test
         </slotted-button>
       </div>
     </div>
 
-    <div id="support" class="step large-step slide" data-rel-x="1500" data-rel-y="-1000">
-      <h1>Web Components support</h1>
+    <div id="why-are-web-components-awesome" class="step slide why-are-web-components-awesome" data-rel-x="1500" data-rel-y="-2000">
+      <h1>Why are web components awesome?</h1>
+
+      <ul>
+        <!-- <li>Expose what you want
+          <ul>
+            <li><span class="expose-type">CSS</span>-> Shadow DOM (CSS inheritance)</li>
+            <li><span class="expose-type">JavaScript</span>-> Shadow DOM (open/close)</li>
+            <li><span class="expose-type">HTML</span>-> <pre class="inline html"><code class="inline"><slot></slot></code></pre></li>
+          </ul>
+        </li> -->
+        <li>Straight forward interface
+          <pre><code>
+<web-component attribute="value">content</web-component>
+          </code></pre>
+        </li>
+        <li>Neatly wrapped 🎁
+          <pre><code>
+<script src="web-component.js"></script>
+<web-component></web-component>
+          </code></pre>
+        </li>
+        <li>
+          <span>Fast first paint with </span><pre class="inline html"><code class="inline">defer</code></pre>
+          <p>[DEMO]</p>
+        </li>
+      </ul>
+    </div>
+
+    <div id="why-are-web-components-awesome_first-paint-demo" class="step slide why-are-web-components-awesome" data-rel-x="0" data-rel-y="1000">
+      <h1>Why are web components awesome? [continued]</h1>
+
+      <ul>
+        <li>
+          <span>Framework independent</span>
+          <p>[DEMO]</p>
+        </li>
+        <li>
+          <span>Micro Frontends</span>
+          <p>[DEMO]</p>
+        </li>
+      </ul>
+    </div>
+
+    <div id="microfrontends-1" class="step large-step slide why-are-web-components-awesome" data-rel-x="1500" data-rel-y="-1000">
+      <h1>Micro frontends</h1>
+      <h2>Common frontend types</h2>
+
+      <img src="monolith-frontback-microservices.png">
+      <p>source: <a href="https://micro-frontends.org/">micro-frontends.org</a></p>
+    </div>
+
+    <div id="microfrontends-2" class="step large-step slide why-are-web-components-awesome" data-rel-x="0" data-rel-y="1000">
+      <h1>Micro Frontends</h1>
+
+      <img src="verticals-headline.png">
+      <p>source: <a href="https://micro-frontends.org/">micro-frontends.org</a></p>
+    </div>
+
+    <div id="microfrontends-3" class="step large-step slide why-are-web-components-awesome" data-rel-x="0" data-rel-y="1000">
+      <h1>Micro Frontends</h1>
+      <h2>Example</h2>
+
+      <img src="three-teams.png">
+    </div>
+
+    <div id="microfrontends-4" class="step large-step slide why-are-web-components-awesome" data-rel-x="0" data-rel-y="1000">
+      <h1>Micro frontends</h1>
+
+      <ul>
+        <li>
+          <p>Advantages: </p>
+          <ul>
+            <li>
+              <p>Technology independent</p>
+            </li>
+            <li>
+              <p>Maintainable codebases</p>
+            </li>
+            <li>
+              <p>No more monoliths</p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>Disadvantages: </p>
+          <ul>
+            <li>
+              <p>More framework code</p>
+              <ul>
+                <li>Technology independent vs fixed technology</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div id="support" class="step large-step slide" data-rel-x="1500" data-rel-y="-3000">
+      <h1>Can I use it?</h1>
 
       <ul>
         <li>
@@ -642,74 +836,24 @@
           <can-i-use-total type="template"></can-i-use-total>
         </li>
       </ul>
-      <p>data from <a href="caniuse.com">caniuse.com</a></p>
+      <p>data from <a href="https://caniuse.com/">caniuse.com</a></p>
+
+      <p>Polyfills at <a href="https://github.com/webcomponents/polyfills">@webcomponents/webcomponentsjs</a></p>
+      <p>can-i-use webcomponent at <a href="https://www.npmjs.com/package/caniuse-web-component">npmjs.com/package/caniuse-web-component</a></p>
     </div>
 
-    <div id="mmeslekm" class="step slide markdown" data-rel-x="1500" data-rel-y="0">
-      # Markdown.js
+    <div id="support-2" class="step slide" data-rel-x="0" data-rel-y="1000">
+      <h1>Framework support</h1>
 
-      * Provided by [Markdown.js](https://github.com/evilstreak/markdown-js) in
-      [extras/](https://github.com/impress/impress.js/tree/master/extras)
-      * Jot down your bullet points in *Markdown* & have it automatically converted to HTML
-      * Note: The Markdown is converted into a presentation client side, in the browser. This is unlike
-      existing tools like [Hovercraft](https://github.com/regebro/hovercraft) and
-      markdown-impress where you generate a new
-      html file on the command line.
-      * This combines the ease of typing Markdown with the full power of impress.js HTML5+CSS3+JavaScript!
-
-      -----
-      # Styles
-
-      * You can use *italics* & **bold**
-      * ...and `code`
-
-
-      -----
-      # A blockquote &amp; image
-
-      <!-- ![Mother Teresa holding a newborn baby](images/3476636111_c551295ca4_b.jpg) -->
-
-      > Spread love everywhere you go.
-      > Let no one ever come to you without leaving happier.
-
-      *-- Mother Teresa*
-
-      Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476636111/)@Flickr. CC-BY 2.0
-
-      -----
-      # Code
-
-      When also using [Highlight.js](https://highlightjs.org/) integration, code blocks in Markdown
-      are converted to HTML first, then colored by Highlight.js:
-
-      // `init` API function that initializes (and runs) the presentation.
-      var init = function () {
-      if (initialized) { return; }
-      execPreInitPlugins();
-
-      // First we set up the viewport for mobile devices.
-      // For some reason iPad goes nuts when it is not done properly.
-      var meta = $("meta[name='viewport']") || document.createElement("meta");
-      meta.content = "width=device-width, minimum-scale=1, maximum-scale=1, user-scalable=no";
-      if (meta.parentNode !== document.head) {
-      meta.name = 'viewport';
-      document.head.appendChild(meta);
-      }
-
-      -----
-
-      # Slide separator
-
-      * 5 dashes are used to separate slides:
-
-      `-----`
-
-      * Attributes from `div.step` element are simply repeated.
-      * Better use relative positioning, lest your slides will all be on top of each other.
-      * If you need to set some attributes, just use HTML and create a div element, then write
-      Markdown inside each div.
+      <a class="left" href="https://custom-elements-everywhere.com/">custom-elements-everywhere.com</a>
     </div>
 
+    <div id="questions" class="step slide" data-rel-x="1500" data-rel-y="-1000">
+      <h1>OK bye!</h1>
+
+      <p class="spacing">Or ask questions if your really want to</p>
+      <a class="ref" href="https://github.com/SteveVanOpstal/web-components">github.com/SteveVanOpstal/web-components</a>
+    </div>
 
     <!--
         
@@ -726,7 +870,7 @@
         CSS transfrom docs: https://developer.mozilla.org/en/CSS/transform
         
     -->
-    <div id="overview" class="step" data-x="3000" data-y="1600" data-z="0" data-scale="5">
+    <div id="overview" class="step" data-x="5000" data-y="2000" data-z="0" data-scale="6">
     </div>
 
   </div>
@@ -747,8 +891,8 @@
   <!-- Extra modules
      Load highlight.js, mermaid.js, markdown.js and MathJax.js from extras.
      If you're curious about details, these are initialized in src/plugins/extras/extras.js -->
-  <script type="text/javascript" src="./extras/mermaid/mermaid.min.js"></script>
-  <script type="text/javascript" src="./extras/markdown/markdown.js"></script>
+  <script src="./extras/mermaid/mermaid.min.js"></script>
+  <script src="./extras/markdown/markdown.js"></script>
   <!--
     
     Last, but not least.

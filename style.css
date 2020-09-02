@@ -17,7 +17,6 @@ h1 {
   width: 840px;
   height: 640px;
   margin: 0 auto;
-  padding: 20px 0;
 }
 
 .actions {
@@ -29,4 +28,86 @@ h1 {
 .actions > button {
   font-size: 1rem;
   margin: 0.5rem;
+}
+
+angular-load-image,
+vue-load-image,
+react-load-image,
+javascript-load-image {
+  display: block;
+  position: relative;
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  border: 5px solid transparent;
+}
+
+angular-load-image {
+  border: 5px solid #dd0031;
+}
+
+angular-load-image::before {
+  content: "";
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/angular.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+vue-load-image {
+  border: 5px solid #35495e;
+}
+
+vue-load-image::before {
+  content: "";
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/vue.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+react-load-image {
+  border: 5px solid #61dafb;
+}
+
+react-load-image::before {
+  content: "";
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/react.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+javascript-load-image {
+  border: 5px solid #f7e018;
+}
+
+javascript-load-image::before {
+  content: '';
+  position: absolute;
+  background-image: url("http://localhost:3200/assets/icons/javascript.svg");
+  background-repeat: no-repeat;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+  width: 100px;
+  z-index: 1;
+}
+
+web-components-navigation {
+  display: block;
+  min-height: 36px;
+  padding-bottom: 20px;
 }
