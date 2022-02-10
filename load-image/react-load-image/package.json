@@ -30,6 +30,6 @@
   ],
   "devDependencies": {
     "css-loader": "^2.1.1",
-    "node-sass": "^4.11.0"
+    "node-sass": "^7.0.0"
   }
 }
